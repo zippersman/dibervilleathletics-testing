@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>D’Iberville Girls Varsity Soccer Stats</title>
+<link rel="apple-touch-icon" href="apple-touch-icon-v2.png">
+<link rel="icon" type="image/png" href="icon-192-v2.png">
+<link rel="manifest" href="manifest-v2.webmanifest">
+<meta name="theme-color" content="#f9a71f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="DHS Stats">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#101215;--card:#1a1d22;--ink:#f1f2f4;--mute:#9aa1ad;--line:#2b2f36;--bar:#2a2e35;--gold:#f9a71f;--win:#3fb871;--loss:#e5594b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Barlow,system-ui,sans-serif;padding-bottom:48px}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+header{background:var(--gold);color:#16181d}
+.hd{display:flex;align-items:center;gap:22px;flex-wrap:wrap;padding:12px 16px}
+.team{font:800 24px/1 "Barlow Condensed",sans-serif}
+.team small{display:block;font:500 13px/1.3 Barlow,sans-serif;opacity:.8;margin-top:3px}
+.back{font:700 17px "Barlow Condensed",sans-serif;color:#16181d;text-decoration:underline;margin-left:0;white-space:nowrap}
+.back+nav{margin-left:0}
+nav{display:flex;gap:6px;flex-wrap:wrap;margin-left:0}
+nav button{font:700 17px "Barlow Condensed",sans-serif;background:transparent;border:2px solid transparent;color:#16181d;padding:7px 14px;border-radius:10px;cursor:pointer}
+nav button.on{background:#16181d;color:var(--gold)}
+nav button:focus-visible,select:focus-visible,th:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+h1{font:800 clamp(34px,8vw,60px)/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:26px 0 6px}
+h2{font:700 24px/1 "Barlow Condensed",sans-serif;margin:28px 0 10px}
+.mute{color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:16px 0}
+.tile{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:10px;padding:12px}
+.tile .v{font:800 38px/1 "Barlow Condensed",sans-serif}
+.tile .l{color:var(--mute);font-weight:600;font-size:14px;margin-top:2px}
+.tile .r{font-size:13px;font-weight:600;margin-top:6px;color:var(--gold)}
+.scroll{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%}
+th,td{padding:9px 12px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child,.l{text-align:left}
+th{color:var(--mute);font-size:14px;font-weight:600}
+th.s{cursor:pointer}
+tr:last-child td{border-bottom:0}
+tr.go{cursor:pointer}tr.go:hover td{background:#22262c}
+tr.tot td{font-weight:700;color:var(--gold)}
+.W{color:var(--win);font-weight:700}.Lo{color:var(--loss);font-weight:700}.T{color:var(--mute);font-weight:700}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-weight:600;cursor:pointer}
+select{font:600 16px Barlow,sans-serif;padding:9px 12px;border-radius:8px;border:2px solid var(--gold);background:var(--card);color:var(--ink);max-width:100%}
+.lead{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.lead .scroll table td:first-child{color:var(--mute);width:34px}
+.track{height:8px;border-radius:4px;background:var(--bar);overflow:hidden;min-width:90px}
+.fill{height:100%;background:var(--gold)}.fill.low{background:var(--loss)}
+.msg{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin-top:24px}
+code{background:var(--bar);padding:1px 6px;border-radius:4px}
+.seg button{font:600 15px Barlow,sans-serif;background:var(--card);color:var(--ink);border:1px solid var(--line);padding:6px 14px;cursor:pointer}
+.seg button.on{background:var(--gold);color:#16181d;border-color:var(--gold)}
+.seg{margin:10px 0}
+.big{font:800 clamp(60px,14vw,110px)/1 "Barlow Condensed",sans-serif}
+.note{color:var(--mute);font-size:14px;max-width:72ch}
+.ol{object-fit:contain;vertical-align:middle;margin:0 6px 0 2px}
+/* ---- glow (matches the main menu) ---- */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(900px 460px at 50% -60px,rgba(249,167,31,.2),transparent 70%),radial-gradient(640px 340px at 6% 55%,rgba(249,167,31,.07),transparent 70%),radial-gradient(560px 320px at 96% 82%,rgba(249,167,31,.08),transparent 70%)}
+header{box-shadow:0 8px 40px rgba(249,167,31,.4)}
+nav button.on{box-shadow:0 0 0 1px rgba(249,167,31,.5),0 0 14px rgba(249,167,31,.25)}
+h1{text-shadow:0 0 34px rgba(249,167,31,.34)}
+h2{text-shadow:0 0 22px rgba(249,167,31,.24)}
+.big{text-shadow:0 0 40px rgba(249,167,31,.42)}
+.tile{position:relative;overflow:hidden;isolation:isolate;background:linear-gradient(160deg,#20242c,var(--card));border-left-color:rgba(249,167,31,.3);border-right-color:rgba(249,167,31,.3);border-bottom-color:rgba(249,167,31,.3);box-shadow:0 0 0 1px rgba(249,167,31,.1),0 0 22px rgba(249,167,31,.12);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease,background .25s ease;animation:tbreathe 4.5s ease-in-out infinite}
+.tile .v{text-shadow:0 0 18px rgba(249,167,31,.32)}
+.tile .r{text-shadow:0 0 12px rgba(249,167,31,.45)}
+.tile::before{content:"";position:absolute;inset:-20% -30%;z-index:1;pointer-events:none;opacity:0;background:linear-gradient(115deg,transparent 36%,rgba(255,206,110,.28) 44%,rgba(255,244,214,.55) 50%,rgba(255,206,110,.28) 56%,transparent 64%);transform:translateX(-120%) skewX(-14deg)}
+.tile:hover{animation:none;transform:translateY(-3px);border-left-color:#f9a71f;border-right-color:#f9a71f;border-bottom-color:#f9a71f;background:linear-gradient(160deg,#33280f,#1c1d21);box-shadow:0 0 0 1px #f9a71f,0 0 28px rgba(249,167,31,.5),0 12px 36px rgba(249,167,31,.2)}
+.tile:hover::before{opacity:1;animation:tshine .95s ease-out}
+@keyframes tshine{from{transform:translateX(-120%) skewX(-14deg)}to{transform:translateX(120%) skewX(-14deg)}}
+@keyframes tbreathe{0%,100%{box-shadow:0 0 0 1px rgba(249,167,31,.1),0 0 18px rgba(249,167,31,.1)}50%{box-shadow:0 0 0 1px rgba(249,167,31,.26),0 0 32px rgba(249,167,31,.26)}}
+.scroll{border-color:rgba(249,167,31,.3);box-shadow:0 0 0 1px rgba(249,167,31,.08),0 0 26px rgba(249,167,31,.1)}
+tr.go:hover td{background:#2b2411}
+th.s:hover{color:var(--gold)}
+tr.tot td{text-shadow:0 0 12px rgba(249,167,31,.4)}
+.chip{transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.chip:hover{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 0 18px rgba(249,167,31,.45)}
+select{box-shadow:0 0 16px rgba(249,167,31,.3)}
+.seg button.on{box-shadow:0 0 16px rgba(249,167,31,.5)}
+.fill{box-shadow:0 0 10px rgba(249,167,31,.75)}.fill.low{box-shadow:0 0 10px rgba(229,89,75,.6)}
+.W{text-shadow:0 0 10px rgba(63,184,113,.5)}.Lo{text-shadow:0 0 10px rgba(229,89,75,.45)}
+.msg{border-color:rgba(249,167,31,.3);box-shadow:0 0 24px rgba(249,167,31,.1)}
+@media (hover:none){.tile::before{opacity:1;animation:tshine 5.5s ease-in-out 1.2s infinite}}
+@media (prefers-reduced-motion:reduce){.tile,.tile::before{animation:none!important}.tile,.chip{transition:none}.tile:hover,.chip:hover{transform:none}}
+/* ---- stat-table look: leaders + player profile ---- */
+.panel{background:linear-gradient(160deg,#1d2129,#171a20);border:1px solid rgba(249,167,31,.28);border-radius:14px;padding:16px;margin-top:22px;box-shadow:0 0 0 1px rgba(249,167,31,.08),0 0 30px rgba(249,167,31,.1)}
+.phead{text-align:center}
+.panel h1.pt{font-size:clamp(26px,5vw,40px);margin:0 0 4px}
+.phead .s1{font:800 20px/1.1 "Barlow Condensed",sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.phead .s2{color:var(--mute);font-size:14px;font-style:italic;margin-top:2px}
+.bigseg{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:14px 0 0}
+.bigseg.two{grid-template-columns:1fr 1fr}
+.bigseg button{font:700 17px/1 "Barlow Condensed",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:#2a2e35;border:2px solid transparent;border-radius:10px;padding:12px 8px;cursor:pointer;transition:border-color .2s,box-shadow .2s,background .2s}
+.bigseg button:hover{border-color:rgba(249,167,31,.6)}
+.bigseg button.on{background:#363a43;border-color:var(--gold);box-shadow:0 0 16px rgba(249,167,31,.4)}
+.bigseg button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.shown{text-align:center;font-weight:600;font-size:14px;margin:14px 0 10px}
+.stbl{background:#171a20;border-color:rgba(249,167,31,.2);box-shadow:none}
+.stbl table{font-size:15px}
+.stbl th{font:700 12px "Barlow Condensed",sans-serif;letter-spacing:.08em;text-transform:uppercase;background:#1e222a;position:sticky;top:0}
+.stbl th.s:hover{color:var(--gold)}
+.stbl th.srt{color:var(--gold)}
+.stbl th.rk,.stbl td.rk{text-align:center;width:56px;color:var(--mute)}
+.stbl tbody tr:nth-child(even) td{background:rgba(255,255,255,.025)}
+.stbl tbody tr.go:hover td{background:#2b2411}
+.stbl td{font-variant-numeric:tabular-nums}
+.stbl td.srt{color:var(--gold);font-weight:700;background:rgba(249,167,31,.07)}
+.av{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#2a2e35;border:1px solid rgba(249,167,31,.4);color:var(--gold);font:800 11px "Barlow Condensed",sans-serif;margin-right:9px;vertical-align:middle}
+.jn{margin-left:6px;font:700 11px "Barlow Condensed",sans-serif;letter-spacing:.06em;color:var(--mute);background:#2a2e35;border-radius:5px;padding:1px 6px;vertical-align:middle}
+.ctrl{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;justify-content:center;margin:14px 0 0}
+.fl span{display:block;font:700 12px "Barlow Condensed",sans-serif;letter-spacing:.12em;color:var(--mute);margin-bottom:4px}
+.ctrl .bigseg{margin:0;min-width:240px}
+.pcard{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:#20242c;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:14px 16px;margin:16px 0 14px;box-shadow:0 0 22px rgba(249,167,31,.12)}
+.pav{width:58px;height:58px;border-radius:12px;flex:none;filter:drop-shadow(0 0 10px rgba(249,167,31,.55))}
+.pname{font:800 32px/1 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:0;text-shadow:0 0 22px rgba(249,167,31,.3)}
+.pm{color:var(--mute);font-size:14px;margin-top:5px}.pm b{color:var(--ink);font-weight:600}
+.pp{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.pp button{font:700 13px "Barlow Condensed",sans-serif;letter-spacing:.08em;text-transform:uppercase;background:#2e333c;color:var(--ink);border:0;border-radius:999px;padding:9px 15px;cursor:pointer;transition:background .2s,color .2s,box-shadow .2s}
+.pp button:hover,.pp button:focus-visible{background:var(--gold);color:#16181d;box-shadow:0 0 14px rgba(249,167,31,.5);outline:none}
+.cols{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:14px;align-items:start}
+@media (max-width:880px){.cols{grid-template-columns:1fr}.pp{margin-left:0}}
+.sp{background:#1b1e25;border:1px solid var(--line);border-radius:12px;padding:14px;scroll-margin-top:72px}
+.sp .st{display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:6px}
+.sp .st b{font:800 21px "Barlow Condensed",sans-serif;letter-spacing:.03em;text-transform:uppercase}
+.sp .st span{font:700 12px "Barlow Condensed",sans-serif;letter-spacing:.1em;color:var(--mute)}
+.gh{display:flex;align-items:center;gap:6px;margin:16px 0 6px;flex-wrap:wrap}
+.gh b{font:800 18px "Barlow Condensed",sans-serif;letter-spacing:.04em;text-transform:uppercase;margin-right:auto;color:var(--gold)}
+.pl{font:700 12px "Barlow Condensed",sans-serif;letter-spacing:.08em;background:#2e333c;border-radius:999px;padding:3px 10px;color:#cfd3da}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));column-gap:16px}
+.sr{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:6px 2px;border-bottom:1px solid var(--line)}
+.sl{font-size:14px;font-weight:600;color:#dfe2e7}
+.sv{font:700 19px "Barlow Condensed",sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sv em{font:600 11px Barlow,sans-serif;font-style:normal;color:var(--mute);margin-right:8px}
+.gnote{color:var(--mute);font-size:13px;margin:4px 0 12px}
+.gl{background:#20242c;border:1px solid transparent;border-radius:10px;margin-bottom:8px;transition:border-color .2s,box-shadow .2s}
+.gl:hover{border-color:rgba(249,167,31,.35)}
+.gl[open]{border-color:rgba(249,167,31,.5);box-shadow:0 0 18px rgba(249,167,31,.15)}
+.gl summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:11px 12px;flex-wrap:wrap}
+.gl summary::-webkit-details-marker{display:none}
+.gl summary::before{content:"›";font:700 24px/1 Barlow,sans-serif;color:var(--mute);width:12px;transition:transform .15s,color .15s}
+.gl[open] summary::before{transform:rotate(90deg);color:var(--gold)}
+.gl summary:focus-visible{outline:3px solid var(--gold);outline-offset:-3px;border-radius:10px}
+.gm{font:800 18px "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.02em}
+.gm .ol{margin:0 6px}
+.gd{margin-left:auto;color:var(--mute);font-size:13px}
+.rp{font:800 14px/1 "Barlow Condensed",sans-serif;letter-spacing:.04em;border-radius:999px;padding:4px 12px;border:2px solid var(--mute);color:var(--mute)}
+.rp.win{border-color:var(--win);color:var(--win)}.rp.loss{border-color:var(--loss);color:var(--loss)}
+.gbody{padding:2px 12px 12px}
+.gx{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:8px}
+.gx div{background:#171a20;border-radius:8px;padding:7px 6px;text-align:center}
+.gx b{display:block;font:800 22px/1 "Barlow Condensed",sans-serif}
+.gx span{font-size:11px;color:var(--mute);letter-spacing:.04em}
+.gbody button{margin-top:10px;font:700 13px "Barlow Condensed",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:transparent;border:2px solid rgba(249,167,31,.5);border-radius:999px;padding:7px 14px;cursor:pointer}
+.gbody button:hover{background:var(--gold);color:#16181d}
+</style>
+<link rel="stylesheet" href="nav.css">
+<script src="logos.js"></script>
+<script src="nav.js" defer></script>
+<link rel="stylesheet" href="loader.css">
+<script src="loader.js" defer></script>
+<script src="bg-video.js" defer></script>
+</head>
+<body>
+<header><div class="wrap hd">
+  <a class="back" href="soccer.html">← Soccer</a>
+  <nav id="nav"></nav>
+</div></header>
+<main class="wrap" id="main"><div class="msg">Loading…</div></main>
+<div class="wrap"><p class="note" id="stamp"></p></div>
+
+<script>
+/* ===== SETTINGS ===== */
+const PUB = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ04weNQhPndf6Sv4JCgfGW7-L4hZUCTcN9C7lO-8Vq27gXMT0CzOvj-Q5bYvjKSjfTS7BRkzbSpT5c/pubhtml"; // paste the Google "Publish to web" link for this team's soccer sheet here (File > Share > Publish to web > Entire document)
+const TEAM = "D’Iberville";
+const SEASON = "Girls Varsity · Season 2026–2027";
+/* ===================== */
+const GID = {looker:127058417, sched:1598752444, log:1696552548};
+const TABS = [["overview","Overview"],["schedule","Schedule"],["players","Players"],["leaders","Leaders"],["profile","Profile"],["box","Box score"]];
+/* [code, name, per-game column, season column (or [[made cols],[attempt cols]] for percentages), 1 = lower is better] */
+const STATS = [
+ ["MIN","Minutes","MPG","Total_MIN"],["PTS","Points (2×G + A)","PPG","Total_PTS"],["SH","Shots","SH_PG","Total_SH"],["SOT","Shots on target","SOT_PG","Total_SOT"],
+ ["SOT%","On-target %","SOT_PCT",[["Total_SOT"],["Total_SH"]]],["G","Goals","GPG","Total_G"],["A","Assists","APG","Total_A"],
+ ["SH%","Shooting %","SH_PCT",[["Total_G"],["Total_SH"]]],["SAV","Saves","SAV_PG","Total_SAV"],["GA","Goals against","GAA","Total_GA",1],
+ ["SV%","Save %","SV_PCT",[["Total_SAV"],["Total_SAV","Total_GA"]]],["CS","Clean sheets","CS_PG","Total_CS"],["G+A","Goal contributions","GCON_PG","Total_GCON"],
+ ["CK","Corners","CK_PG","Total_CK"],["OFF","Offsides","OFF_PG","Total_OFF",1],["FC","Fouls committed","FC_PG","Total_FC",1],
+ ["YC","Yellow cards","YC_PG","Total_YC",1],["RC","Red cards","RC_PG","Total_RC",1],["TKL","Tackles","TKL_PG","Total_TKL"]];
+const HEAD = [["G","Goals"],["A","Assists"],["PTS","Points"],["SH","Shots"],["SAV","Saves"],["SH%","Shooting %"]];
+const LEAD = [["Goals","GPG","Total_G"],["Assists","APG","Total_A"],["Points","PPG","Total_PTS"],["Shots on target","SOT_PG","Total_SOT"],["Saves","SAV_PG","Total_SAV"],["Tackles","TKL_PG","Total_TKL"],["Shooting %","SH_PCT"],["Save %","SV_PCT"]];
+const BOX = ["MIN","G","A","PTS","SH","SOT","SAV","GA","TKL","CK","OFF","FC","YC","RC"];
+
+let P = [], G = [], L = [], sortK = "PPG", sortD = -1, mode = "pg", profJ = null, boxN = null;
+const $ = id => document.getElementById(id);
+const num = v => { const n = parseFloat(String(v ?? "").replace("%","")); return isNaN(n) ? NaN : n; };
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const slug = n => String(n).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+const lg = (n, z = 26) => dhsLogo(n, {cls:"ol", w:z, h:z, fb:"remove"});
+const f1 = (v, pct) => { const n = num(v); return isNaN(n) ? "–" : n.toFixed(1) + (pct ? "%" : ""); };
+const rc = r => r === "W" ? "W" : r === "L" ? "Lo" : "T";
+
+function csv(t){
+  const rows = []; let r = [], f = "", q = false;
+  for (let i = 0; i < t.length; i++){
+    const c = t[i];
+    if (q){ if (c === '"'){ if (t[i+1] === '"'){ f += '"'; i++; } else q = false; } else f += c; }
+    else if (c === '"') q = true;
+    else if (c === ","){ r.push(f); f = ""; }
+    else if (c === "\n"){ r.push(f); rows.push(r); r = []; f = ""; }
+    else if (c !== "\r") f += c;
+  }
+  if (f !== "" || r.length){ r.push(f); rows.push(r); }
+  return rows;
+}
+function objs(rows, key){
+  const h = rows.findIndex(r => r.some(c => c.trim() === key));
+  if (h < 0) return [];
+  const head = rows[h].map(x => x.trim());
+  return rows.slice(h + 1).map(r => Object.fromEntries(head.map((k,i) => [k, (r[i] ?? "").trim()])));
+}
+async function grab(gid){
+  const id = (PUB.match(/\/e\/([^\/]+)/) || [,PUB])[1];
+  const u = `https://docs.google.com/spreadsheets/d/e/${id}/pub?gid=${gid}&single=true&output=csv&t=${Date.now()}`;
+  const res = await fetch(u, {cache:"no-store"});
+  if (!res.ok) throw new Error(res.status);
+  return csv(await res.text());
+}
+async function load(first){
+  if (PUB.startsWith("PASTE_")){
+    $("main").innerHTML = `<div class="msg"><b>One setup step left.</b><p>Open this file in a text editor and paste your published Google Sheet link into <code>PUB</code> near the top of the script.</p></div>`;
+    return;
+  }
+  try{
+    const [a, b, c] = await Promise.all([grab(GID.looker), grab(GID.sched), grab(GID.log)]);
+    P = objs(a, "Jersey").filter(p => p.Player && p.Jersey !== "");
+    G = objs(b, "Game #").filter(g => g.Opponent && !isNaN(num(g["Our Score"])) && g["Our Score"] !== "");
+    L = objs(c, "Game #").filter(x => x.Player);
+    if (!P.length) throw new Error("empty");
+    $("stamp").textContent = "Updated " + new Date().toLocaleTimeString([], {hour:"numeric", minute:"2-digit"}) + ". Stats refresh automatically.";
+    route();
+  }catch(e){
+    if (first || !P.length) $("main").innerHTML = `<div class="msg"><b>Couldn’t load the stats.</b><p>Check that your Google Sheet is published to the web (File → Share → Publish to web → Entire document) and that the link in <code>PUB</code> is correct, then reload.</p></div>`;
+  }
+}
+
+/* ---- helpers for stats ---- */
+const pool = () => P.filter(p => num(p.GP) > 0);
+function rankOf(s, p){
+  const mine = num(p[s[2]]); if (isNaN(mine)) return null;
+  const pl = pool().filter(x => !isNaN(num(x[s[2]])));
+  return { r: pl.filter(x => s[4] ? num(x[s[2]]) < mine : num(x[s[2]]) > mine).length + 1, of: pl.length };
+}
+function bestOf(s){
+  const v = pool().map(x => num(x[s[2]])).filter(x => !isNaN(x));
+  return v.length ? (s[4] ? Math.min(...v) : Math.max(...v)) : NaN;
+}
+const sum = k => P.reduce((t, p) => t + (num(p[k]) || 0), 0);
+const sumK = (p, ks) => ks.reduce((t, k) => t + (num(p[k]) || 0), 0);
+const seasonOf = (s, p) => Array.isArray(s[3]) ? `${sumK(p, s[3][0])}–${sumK(p, s[3][1])}` : (p[s[3]] ?? "");
+const cnt = (g, r) => g.filter(x => x.Result === r).length;
+const rec = g => `${cnt(g,"W")}–${cnt(g,"L")}–${cnt(g,"T")}`;
+
+/* ---- views ---- */
+function vOverview(){
+  const n = G.length, gf = G.reduce((t,g) => t + num(g["Our Score"]), 0), ga = G.reduce((t,g) => t + num(g["Opp Score"]), 0);
+  const w = cnt(G,"W"), cs = G.filter(g => num(g["Opp Score"]) === 0).length;
+  const sh = sum("Total_SH"), sot = sum("Total_SOT");
+  const pct = (a, b) => b ? (a / b * 100).toFixed(1) + "%" : "–";
+  const pg = k => n ? (sum(k) / n).toFixed(1) : "–";
+  const tile = (v,l) => `<div class="tile"><div class="v">${v}</div><div class="l">${l}</div></div>`;
+  const last = G.slice(-5).reverse().map(g => `<div class="chip" data-go="g${g["Game #"]}"><span class="${rc(g.Result)}">${esc(g.Result)}</span> ${g["Home / Away"] === "Away" ? "@" : "vs"} ${lg(g.Opponent, 20)}${esc(g.Opponent)} ${g["Our Score"]}–${g["Opp Score"]}</div>`).join("");
+  const top = (lab, col) => { const t = [...pool()].sort((a,b) => num(b[col]) - num(a[col]))[0]; return t ? `<div class="tile"><div class="v">${f1(t[col])}</div><div class="l">${lab}</div><div class="r" data-go="p${t.Jersey}" style="cursor:pointer">${esc(t.Player)}</div></div>` : ""; };
+  return `<div class="mute" style="margin-top:22px;font-weight:600">${SEASON}</div><h1 style="margin-top:4px">${TEAM} soccer</h1><div class="big">${rec(G)}</div><div class="mute">${n ? (w / n * 100).toFixed(1) : 0}% wins · home ${rec(G.filter(g => g["Home / Away"] === "Home"))} · away ${rec(G.filter(g => g["Home / Away"] === "Away"))} <span title="Wins–losses–ties">(W–L–T)</span></div>
+  <div class="grid">${tile(n ? (gf/n).toFixed(1) : "–","Goals for / game")}${tile(n ? (ga/n).toFixed(1) : "–","Goals against / game")}${tile(n ? ((gf-ga)/n >= 0 ? "+" : "") + ((gf-ga)/n).toFixed(1) : "–","Goal diff / game")}${tile(cs,"Clean sheets")}</div>
+  <h2>Recent games</h2><div class="chips">${last}</div>
+  <h2>Team leaders</h2><div class="grid">${top("Goals","GPG")}${top("Assists","APG")}${top("Shots on target","SOT_PG")}${top("Saves","SAV_PG")}${top("Tackles","TKL_PG")}</div>
+  <h2>Team averages</h2><div class="grid">${tile(pct(sum("Total_G"), sh),"Shooting %")}${tile(pct(sot, sh),"On-target %")}${tile(pg("Total_SH"),"Shots")}${tile(pg("Total_SOT"),"Shots on target")}${tile(pg("Total_CK"),"Corners")}${tile(pg("Total_SAV"),"Saves")}${tile(pg("Total_TKL"),"Tackles")}${tile(pg("Total_FC"),"Fouls")}${tile(sum("Total_YC"),"Yellow cards")}${tile(sum("Total_RC"),"Red cards")}</div>`;
+}
+function vSchedule(){
+  return `<h1>Schedule</h1><div class="scroll"><table><thead><tr><th>#</th><th>Date</th><th class="l">Opponent</th><th>Result</th><th>Score</th><th>Record</th></tr></thead><tbody>` +
+   G.map(g => `<tr class="go" data-go="g${g["Game #"]}"><td>${esc(g["Game #"])}</td><td>${esc(g.Date)}</td><td class="l">${g["Home / Away"] === "Away" ? "@" : "vs"} ${lg(g.Opponent)}${esc(g.Opponent)}</td><td class="${rc(g.Result)}">${esc(g.Result)}</td><td>${g["Our Score"]}–${g["Opp Score"]}</td><td>${esc(g.Record)}</td></tr>`).join("") +
+   `</tbody></table></div><p class="note">Record is wins–losses–ties. Tap a game to see its box score.</p>`;
+}
+const PCOLS = [["Player","Player"],["GP","GP"],["MPG","MIN"],["GPG","G"],["APG","A"],["PPG","PTS"],["SH_PG","SH"],["SOT_PG","SOT"],["SH_PCT","SH%"],["SAV_PG","SAV"],["TKL_PG","TKL"]];
+function vPlayers(){
+  const rows = [...P].sort((a,b) => sortK === "Player" ? sortD * a.Player.localeCompare(b.Player) : sortD * ((num(a[sortK]) || -1) - (num(b[sortK]) || -1)));
+  return `<h1>Players</h1><div class="scroll"><table><thead><tr><th class="s l" tabindex="0" data-sort="Jersey">#</th>${PCOLS.map(c => `<th class="s${c[0] === "Player" ? " l" : ""}" tabindex="0" data-sort="${c[0]}">${c[1]}${sortK === c[0] ? (sortD < 0 ? " ▼" : " ▲") : ""}</th>`).join("")}</tr></thead><tbody>` +
+   rows.map(p => `<tr class="go" data-go="p${p.Jersey}"><td class="l">${esc(p.Jersey)}</td><td class="l">${esc(p.Player)}</td><td>${p.GP}</td>${PCOLS.slice(2).map(c => `<td>${f1(p[c[0]], c[0].includes("PCT"))}</td>`).join("")}</tr>`).join("") +
+   `</tbody></table></div><p class="note">All numbers are per game. PTS = 2 × goals + assists. Tap a column to sort. Tap a player for the full profile.</p>`;
+}
+/* ---- leaders + profile (stat-table look) ---- */
+const SPORT = "Soccer";
+const LTABS = [["Attack",["G","A","PTS","G+A","SH","SOT","SH%","SOT%"]],["Goalkeeping",["SAV","GA","SV%","CS"]],["Defense",["TKL","FC","YC","RC"]],["Other",["MIN","CK","OFF"]]];     /* [tab name, [stat codes shown as columns]] */
+const GROUPS = [["Attack",["G","A","PTS","G+A","SH","SOT","SH%","SOT%"]],["Goalkeeping",["SAV","GA","SV%","CS"]],["Defense & discipline",["TKL","FC","YC","RC"]],["Other",["MIN","CK","OFF"]]];   /* [group name, [stat codes]] for the profile stat line */
+const GLOG = [["MIN","MIN"],["G","G"],["A","A"],["PTS","PTS"],["SH","SH"],["SOT","SOT"],["SAV","SAV"],["GA","GA"],["TKL","TKL"],["CK","CK"],["OFF","OFF"],["FC","FC"],["YC","YC"],["RC","RC"]];       /* [label, column or [made, attempted]] shown in each game-log row */
+let ldT = 0, ldK = null, ldD = -1;
+const precord = p => { const gp = num(p.GP), t = Math.max(0, gp - (num(p.W) || 0) - (num(p.L) || 0)); return `${p.W}–${p.L}–${t}`; };
+const stat = k => STATS.find(s => s[0] === k);
+const isPct = s => s[0].endsWith("%");
+const colOf = s => (mode === "tot" && typeof s[3] === "string") ? s[3] : s[2];
+const ord = n => { const v = n % 100, x = ["th","st","nd","rd"]; return n + (x[(v - 20) % 10] || x[v] || x[0]); };
+const ini = n => String(n).split(" ").filter(Boolean).map(w => w[0]).join("").slice(0, 2).toUpperCase();
+const gdate = s => { const q = String(s).split("/"), d = new Date(+q[2], q[0] - 1, +q[1]); return isNaN(d) ? s : d.toLocaleDateString("en-US", {month:"short", day:"numeric", year:"numeric"}); };
+const teamLine = () => `${TEAM} ${SEASON.split(" · ")[0]} ${SPORT}`.toUpperCase();
+const seasonLine = () => (SEASON.split(" · ")[1] || "").toUpperCase();
+function fmt(s, p){
+  if (isPct(s)) return f1(p[s[2]], true);
+  if (mode === "tot" && typeof s[3] === "string"){ const n = num(p[s[3]]); return isNaN(n) ? "–" : String(Math.round(n * 10) / 10); }
+  return f1(p[s[2]]);
+}
+const modeBtns = () => `<div class="bigseg two"><button data-mode="pg" class="${mode === "pg" ? "on" : ""}">Per game</button><button data-mode="tot" class="${mode === "tot" ? "on" : ""}">Season totals</button></div>`;
+
+function vLeaders(){
+  const cols = LTABS[ldT][1].map(stat);
+  if (!cols.some(s => s[0] === ldK)){ ldK = cols[0][0]; ldD = cols[0][4] ? 1 : -1; }
+  const ks = stat(ldK), kc = colOf(ks);
+  const rows = pool().filter(p => cols.some(s => num(p[s[2]]) > 0)).sort((a, b) => {
+    const x = num(a[kc]), y = num(b[kc]);
+    if (isNaN(x) && isNaN(y)) return 0; if (isNaN(x)) return 1; if (isNaN(y)) return -1;
+    return ldD * (x - y) || a.Player.localeCompare(b.Player);
+  });
+  const tbl = rows.length ? `<div class="scroll stbl"><table><thead><tr><th class="rk">Rank</th><th class="l">Player</th><th>GP</th>${cols.map(s => `<th class="s${s[0] === ldK ? " srt" : ""}" tabindex="0" data-lsort="${s[0]}" title="${esc(s[1])}">${s[0]}${s[0] === ldK ? (ldD < 0 ? " ▼" : " ▲") : ""}</th>`).join("")}</tr></thead><tbody>` +
+    rows.map((p, i) => `<tr class="go" data-go="p${esc(p.Jersey)}"><td class="rk">${i + 1}</td><td class="l"><span class="av">${esc(ini(p.Player))}</span>${esc(p.Player)}<span class="jn">#${esc(p.Jersey)}</span></td><td>${esc(p.GP)}</td>${cols.map(s => `<td${s[0] === ldK ? ' class="srt"' : ""}>${fmt(s, p)}</td>`).join("")}</tr>`).join("") +
+    `</tbody></table></div>` : `<div class="msg">No stats in this category yet.</div>`;
+  return `<div class="panel"><div class="phead"><h1 class="pt">${esc(teamLine())}</h1><div class="s1">${esc(seasonLine())} STAT LEADERS</div><div class="s2">Tap a column to sort · tap a player for the full profile</div></div>
+  ${modeBtns()}
+  <div class="bigseg" role="tablist" aria-label="Stat category">${LTABS.map((t, i) => `<button role="tab" aria-selected="${i === ldT}" data-ltab="${i}" class="${i === ldT ? "on" : ""}">${t[0]}</button>`).join("")}</div>
+  <p class="shown">Showing ${rows.length} player${rows.length === 1 ? "" : "s"}, sorted by ${esc(ks[1])} (${mode === "tot" ? "season total" : "per game"}).</p>
+  ${tbl}
+  <p class="note" style="margin-top:12px">Shooting percentages are season percentages in both views. For stats where fewer is better, the sort starts with the lowest.</p></div>`;
+}
+
+function vProfile(){
+  const p = P.find(x => x.Jersey === String(profJ)) || P[0];
+  const gp = num(p.GP);
+  const pick = `<label class="fl"><span>PLAYER</span><select id="ppick" aria-label="Choose a player">${P.map(x => `<option value="${esc(x.Jersey)}"${x === p ? " selected" : ""}>#${esc(x.Jersey)} ${esc(x.Player)}</option>`).join("")}</select></label>`;
+  const top = `<div class="phead"><h1 class="pt">${esc(teamLine())}</h1><div class="s1">PLAYER PROFILE</div><div class="s2">${esc(seasonLine())}</div></div><div class="ctrl">${pick}${modeBtns()}</div>`;
+  if (!(gp > 0)) return `<div class="panel">${top}<div class="msg">${esc(p.Player)} hasn’t played yet.</div></div>`;
+
+  const groups = GROUPS.map(([lab, codes]) => ({lab, ss: codes.map(stat)})).filter((g, i) => i === 0 || g.ss.some(s => num(p[s[2]]) > 0));
+  const statLine = groups.map(g => {
+    const lead = g.ss[0], r = rankOf(lead, p);
+    return `<div class="gh"><b>${esc(g.lab)}</b><span class="pl" title="Rank in ${esc(lead[1])} among teammates">RANK ${r ? r.r : "–"}</span><span class="pl">GP ${gp}</span></div><div class="sg">` +
+      g.ss.map(s => {
+        const r2 = rankOf(s, p), v = num(p[s[2]]);
+        const shown = (isPct(s) && mode === "tot") ? esc(seasonOf(s, p)) : fmt(s, p);
+        return `<div class="sr"><span class="sl">${esc(s[1])}</span><span class="sv">${r2 && v > 0 ? `<em>${ord(r2.r)}</em>` : ""}${shown}</span></div>`;
+      }).join("") + `</div>`;
+  }).join("");
+
+  const val = (x, k) => Array.isArray(k) ? `${x[k[0]] || 0}-${x[k[1]] || 0}` : (x[k] === "" || x[k] == null ? "–" : esc(x[k]));
+  const logs = L.filter(x => x.Player === p.Player).map(x => ({x, g: G.find(g => g["Game #"] === x["Game #"])})).filter(o => o.g).sort((a, b) => num(b.g["Game #"]) - num(a.g["Game #"]));
+  const log = logs.length ? logs.map(({x, g}) => {
+    const res = g.Result, cls = res === "W" ? "win" : res === "L" ? "loss" : "tie";
+    return `<details class="gl"><summary><span class="gm">${esc(TEAM)} ${g["Home / Away"] === "Away" ? "@" : "vs"} ${lg(g.Opponent, 22)}${esc(g.Opponent)}</span><span class="gd">${esc(gdate(g.Date))}</span><span class="rp ${cls}">${esc(res)} ${esc(g["Our Score"])}–${esc(g["Opp Score"])}</span></summary>
+      <div class="gbody"><div class="gx">${GLOG.map(([lab, k]) => `<div><b>${val(x, k)}</b><span>${lab}</span></div>`).join("")}</div><button data-go="g${esc(g["Game #"])}">Full box score →</button></div></details>`;
+  }).join("") : `<div class="msg" style="margin-top:0">No game-by-game stats yet.</div>`;
+
+  return `<div class="panel">${top}
+  <div class="pcard"><img class="pav" src="icons/soccer-girls-varsity.png" alt=""><div><h2 class="pname">${esc(p.Player)}</h2><div class="pm"><b>${esc(TEAM)}</b> · #${esc(p.Jersey)} · ${esc(SEASON.split(" · ")[1] || "")} · ${groups.length} categor${groups.length === 1 ? "y" : "ies"} · team record ${esc(precord(p))}</div></div>
+    <div class="pp"><button data-scroll="statline">Stat line</button><button data-scroll="gamelog">Game log</button></div></div>
+  <div class="cols">
+    <section class="sp" id="statline"><div class="st"><b>Season stat line</b><span>${groups.length} CATEGOR${groups.length === 1 ? "Y" : "IES"}</span></div>${statLine}
+      <p class="gnote" style="margin-top:12px">Ranks compare this player with teammates who have played at least one game. For stats where fewer is better, a lower number ranks higher.</p></section>
+    <section class="sp" id="gamelog"><div class="st"><b>Game log</b><span>${logs.length} GAME${logs.length === 1 ? "" : "S"}</span></div><p class="gnote">Open a game to see what this player recorded in it.</p>${log}</section>
+  </div></div>`;
+}
+function vBox(){
+  const g = G.find(x => x["Game #"] === String(boxN)) || G[G.length - 1];
+  if (!g) return `<h1>Box score</h1><div class="msg">No games yet.</div>`;
+  const pick = `<select id="bpick" aria-label="Choose a game">${G.map(x => `<option value="${esc(x["Game #"])}"${x === g ? " selected" : ""}>Game ${esc(x["Game #"])}: ${x["Home / Away"] === "Away" ? "@" : "vs"} ${esc(x.Opponent)} (${esc(x.Date)})</option>`).join("")}</select>`;
+  const rows = L.filter(x => x["Game #"] === g["Game #"]).sort((a,b) => num(b.PTS) - num(a.PTS));
+  const v = (r, k) => num(r[k]) || 0;
+  const T = k => rows.reduce((t, r) => t + v(r, k), 0);
+  const line = (r, t) => `<tr class="${t ? "tot" : ""}"><td class="l">${t ? "" : esc(r["Jersey #"])}</td><td class="l">${t ? "Team" : esc(r.Player)}</td>${BOX.map(k => `<td>${t ? T(k) : v(r, k)}</td>`).join("")}</tr>`;
+  return `<h1>Box score</h1>${pick}<p style="margin:14px 0 0;font:700 28px/1.1 'Barlow Condensed',sans-serif"><span class="${rc(g.Result)}">${esc(g.Result)}</span> ${esc(TEAM)} ${g["Our Score"]}, ${lg(g.Opponent, 36)}${esc(g.Opponent)} ${g["Opp Score"]}</p>
+  <div class="scroll" style="margin-top:12px"><table><thead><tr><th class="l">#</th><th class="l">Player</th>${BOX.map(k => `<th>${k}</th>`).join("")}</tr></thead><tbody>${rows.map(r => line(r, 0)).join("")}${line(null, 1)}</tbody></table></div><p class="note">SH = shots, SOT = shots on target, SAV = saves, GA = goals against (goalkeeper), CK = corners, OFF = offsides, FC = fouls, YC/RC = yellow/red cards.</p>`;
+}
+
+/* ---- routing ---- */
+function route(){
+  if (!P.length) return;
+  let h = location.hash.slice(1) || "overview", tab = h, m;
+  if ((m = h.match(/^p(\d+)$/))){ tab = "profile"; profJ = m[1]; }
+  else if ((m = h.match(/^g(\d+)$/))){ tab = "box"; boxN = m[1]; }
+  if (!TABS.some(t => t[0] === tab)) tab = "overview";
+  $("nav").innerHTML = TABS.map(t => `<button data-go="${t[0]}" class="${t[0] === tab ? "on" : ""}">${t[1]}</button>`).join("");
+  const view = {overview:vOverview, schedule:vSchedule, players:vPlayers, leaders:vLeaders, profile:vProfile, box:vBox}[tab];
+  $("main").innerHTML = view();
+}
+document.addEventListener("click", e => {
+  const go = e.target.closest("[data-go]"), so = e.target.closest("[data-sort]"), md = e.target.closest("[data-mode]");
+  if (go){ location.hash = go.dataset.go; window.scrollTo(0, 0); }
+  else if (so){ const k = so.dataset.sort === "Jersey" ? "Jersey" : so.dataset.sort; sortD = (sortK === k) ? -sortD : (k === "Player" ? 1 : -1); sortK = k; route(); }
+  else if (md){ mode = md.dataset.mode; route(); }
+});
+document.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.dataset && e.target.dataset.sort) e.target.click(); });
+document.addEventListener("change", e => {
+  if (e.target.id === "ppick") location.hash = "p" + e.target.value;
+  if (e.target.id === "bpick") location.hash = "g" + e.target.value;
+});
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-ltab]"), s = e.target.closest("[data-lsort]"), sc = e.target.closest("[data-scroll]");
+  if (t){ ldT = +t.dataset.ltab; ldK = null; route(); }
+  else if (s){ const k = s.dataset.lsort; if (ldK === k) ldD = -ldD; else { ldK = k; ldD = stat(k)[4] ? 1 : -1; } route(); }
+  else if (sc){ const el = $(sc.dataset.scroll); if (el) el.scrollIntoView({behavior:"smooth", block:"start"}); }
+});
+document.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.dataset && e.target.dataset.lsort) e.target.click(); });
+addEventListener("hashchange", route);
+
+load(true);
+setInterval(() => load(false), 120000);
+</script>
+</body>
+</html>

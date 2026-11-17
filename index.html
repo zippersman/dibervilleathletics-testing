@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>D’Iberville Athletics</title>
+<link rel="apple-touch-icon" href="apple-touch-icon-v2.png">
+<link rel="icon" type="image/png" href="icon-192-v2.png">
+<link rel="manifest" href="manifest-v2.webmanifest">
+<meta name="theme-color" content="#0e0f12">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="DHS Stats">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0f12;--card:#181b21;--ink:#f1f2f4;--mute:#9aa1ad;--line:#2b2f36;--gold:#f9a71f;--win:#3fb871;--loss:#e5594b}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1000px 420px at 50% -80px,#2a2110,transparent),var(--bg);color:var(--ink);font:16px/1.5 Barlow,system-ui,sans-serif;padding-bottom:40px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
+.top{display:flex;align-items:center;gap:12px;padding:16px 0}
+.top img{width:46px;height:46px;border-radius:11px;display:block}
+.top b{font:800 22px/1 "Barlow Condensed",sans-serif;letter-spacing:.02em}
+.top span{display:block;color:var(--mute);font-size:13px}
+.wip{background:repeating-linear-gradient(-45deg,var(--gold) 0 14px,#16181d 14px 28px);border-radius:10px;padding:3px}
+.wip div{background:#16181d;border-radius:8px;padding:9px 14px;text-align:center;font:700 16px "Barlow Condensed",sans-serif;letter-spacing:.14em;color:var(--gold)}
+.eyebrow{font:700 13px "Barlow Condensed",sans-serif;letter-spacing:.14em;color:var(--gold);margin:30px 0 4px}
+h1{font:800 clamp(38px,8vw,64px)/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:6px 0 8px}
+h2{font:800 30px/1 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:0 0 14px}
+.lede{color:var(--mute);max-width:56ch;margin:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px}
+.card{display:flex;flex-direction:column;gap:10px;background:linear-gradient(160deg,#20242c,var(--card));border:1px solid var(--line);border-left:4px solid var(--c,var(--gold));border-radius:12px;padding:16px;color:inherit;text-decoration:none;min-height:176px}
+a.card:hover{border-color:var(--c,var(--gold));transform:translateY(-2px)}
+a.card:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.card .h{display:flex;gap:12px;align-items:center}
+.card img{width:52px;height:52px;border-radius:12px;flex:none}
+.card h3{font:800 28px/1 "Barlow Condensed",sans-serif;margin:0;text-transform:uppercase}
+.card p{margin:2px 0 0;color:var(--mute);font-size:14px;line-height:1.3}
+.card .f{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.open{font:700 18px "Barlow Condensed",sans-serif}
+.pill{background:#2a2e35;border-radius:999px;padding:3px 11px;font:700 13px "Barlow Condensed",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.pill b{color:var(--gold)}
+.card.soon{--c:#5d6470;opacity:.78}
+.card.soon .pill{color:var(--gold)}
+.card.soon img{filter:grayscale(.6)}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+.r{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;color:inherit;text-decoration:none;display:block}
+a.r:hover{border-color:var(--gold)}
+.r .m{display:flex;justify-content:space-between;font-size:13px;color:var(--mute);gap:8px}
+.r .m b{color:var(--ink);font-family:"Barlow Condensed",sans-serif;font-size:15px;letter-spacing:.05em}
+.fin{color:var(--win);font-weight:700}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;text-align:center;margin:12px 0}
+.t img,.ini{width:44px;height:44px;border-radius:11px;margin:0 auto 4px;display:block}
+.ini{background:#2a2e35;display:grid;place-items:center;font:800 18px "Barlow Condensed",sans-serif;color:var(--mute)}
+.t div.n{font:700 14px "Barlow Condensed",sans-serif;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
+.t div.s{font:800 40px/1 "Barlow Condensed",sans-serif}
+.t.w div.s{color:var(--ink)}.t.l div.s{color:var(--mute)}
+.dash{color:var(--mute)}
+.ts{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:9px;font:700 14px "Barlow Condensed",sans-serif;letter-spacing:.08em;text-transform:uppercase;gap:8px}
+.ts span:first-child{color:var(--gold)}
+.ts span:last-child{color:var(--ink);text-transform:none;letter-spacing:0;font-family:Barlow,sans-serif;font-weight:600}
+.msg{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;color:var(--mute)}
+footer{margin-top:36px;color:var(--mute);font-size:13px;text-align:center}
+.back{margin-left:auto;font:700 15px "Barlow Condensed",sans-serif;color:var(--gold);text-decoration:underline}
+.sport h3{font-size:36px}.sport{min-height:200px}
+
+/* ---- glowing gold menu cards ---- */
+body{background:radial-gradient(900px 460px at 50% -120px,rgba(249,167,31,.24),transparent 70%),radial-gradient(520px 320px at 92% 34%,rgba(249,167,31,.07),transparent 70%),var(--bg)}
+.top img{filter:drop-shadow(0 0 10px rgba(249,167,31,.55))}
+h1,h2{text-shadow:0 0 30px rgba(249,167,31,.22)}
+.eyebrow{text-shadow:0 0 14px rgba(249,167,31,.5)}
+.card,a.r{position:relative;overflow:hidden;isolation:isolate;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease,background .25s ease}
+a.card{border-color:rgba(249,167,31,.35);box-shadow:0 0 0 1px rgba(249,167,31,.12),0 0 24px rgba(249,167,31,.12)}
+.card::before,a.r::before{content:"";position:absolute;inset:-20% -30%;z-index:1;pointer-events:none;opacity:0;
+ background:linear-gradient(115deg,transparent 36%,rgba(255,206,110,.28) 44%,rgba(255,244,214,.6) 50%,rgba(255,206,110,.28) 56%,transparent 64%);transform:translateX(-120%) skewX(-14deg)}
+a.card:hover,a.card:focus-visible,a.r:hover,a.r:focus-visible{transform:translateY(-4px);border-color:#f9a71f;background:linear-gradient(160deg,#33280f,#1c1d21);
+ box-shadow:0 0 0 1px #f9a71f,0 0 30px rgba(249,167,31,.55),0 14px 44px rgba(249,167,31,.22)}
+a.r:hover,a.r:focus-visible{background:linear-gradient(160deg,#2a2314,#1a1c21)}
+a.card:hover::before,a.card:focus-visible::before,a.card:active::before,a.r:hover::before,a.r:focus-visible::before,a.r:active::before{opacity:1;animation:shine .95s ease-out}
+@keyframes shine{from{transform:translateX(-120%) skewX(-14deg)}to{transform:translateX(120%) skewX(-14deg)}}
+@keyframes breathe{0%,100%{box-shadow:0 0 0 1px rgba(249,167,31,.12),0 0 20px rgba(249,167,31,.10)}50%{box-shadow:0 0 0 1px rgba(249,167,31,.28),0 0 34px rgba(249,167,31,.26)}}
+a.card:not(:hover){animation:breathe 4.5s ease-in-out infinite}
+.ar{display:inline-block;font-style:normal;transition:transform .22s ease}
+a.card:hover .ar,a.card:focus-visible .ar{transform:translateX(6px)}
+a.card:hover h3{text-shadow:0 0 18px rgba(249,167,31,.65)}
+a.card:hover img{filter:drop-shadow(0 0 12px rgba(249,167,31,.8))}
+@media (hover:none){a.card::before{opacity:1;animation:shine 5.5s ease-in-out 1.2s infinite}}
+@media (prefers-reduced-motion:reduce){a.card,a.card:not(:hover),.card::before,a.r::before{animation:none!important}.card,a.r,.ar{transition:none}}
+
+/* ---- install as app tutorial ---- */
+.inst{margin-top:44px}
+.inst .lede{margin-bottom:18px}
+.guides{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+.guide{background:linear-gradient(160deg,#20242c,var(--card));border:1px solid rgba(249,167,31,.3);border-radius:12px;padding:18px;box-shadow:0 0 0 1px rgba(249,167,31,.08),0 0 22px rgba(249,167,31,.08)}
+.guide .gh{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.guide .gh svg{width:26px;height:26px;flex:none;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.guide h3{font:800 26px/1 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:0}
+.guide .via{color:var(--mute);font-size:13px;margin:0 0 12px}
+.guide ol{list-style:none;counter-reset:s;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.guide li{counter-increment:s;position:relative;padding-left:40px;font-size:15px;line-height:1.35;min-height:28px}
+.guide li::before{content:counter(s);position:absolute;left:0;top:-1px;width:28px;height:28px;border-radius:50%;background:var(--gold);color:#16181d;display:grid;place-items:center;font:800 16px "Barlow Condensed",sans-serif}
+.guide li b{color:var(--gold);font-weight:600}
+.guide li svg{display:inline-block;vertical-align:-4px;width:18px;height:18px;fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin:0 2px}
+.guide .tip{margin:14px 0 0;padding-top:10px;border-top:1px solid var(--line);color:var(--mute);font-size:13px;line-height:1.4}
+.done{margin-top:14px;color:var(--mute);font-size:14px}
+
+/* fill the whole screen and don't tile the glow, which caused a cut-off strip at the bottom of short pages */
+html{background:#0e0f12}
+body{min-height:100vh;background-repeat:no-repeat}
+</style>
+<link rel="stylesheet" href="nav.css">
+<script>
+/* Shared opponent-logo loader.
+   Instead of asking for exactly one file (logos/<slug>.png) and giving up, this tries the
+   usual spellings/extensions of the school name, uses the first one that exists, and only
+   then falls back to initials. Results are remembered so a refresh doesn't re-try 404s.
+
+   Usage:  dhsLogo("St. Martin", {cls:"op", fb:"ini"})                    -> hub / results cards
+           dhsLogo("Bay", {cls:"ol", w:26, h:26, fb:"remove"})            -> small logo on team pages */
+(function(){
+  var EXTS = ["png", "webp", "jpg", "jpeg", "svg"];
+  var cache = {};                       /* name -> working src, or "" if nothing was found */
+
+  function cap(w){ return w.charAt(0).toUpperCase() + w.slice(1); }
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  function initials(n){ return String(n).replace(/[^A-Za-z ]/g, "").split(" ").filter(Boolean).map(function(w){ return w[0]; }).join("").slice(0, 2).toUpperCase(); }
+
+  function candidates(name){
+    var raw = String(name).trim();
+    var words = raw.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().split(" ").filter(Boolean);
+    var caps = words.map(cap);
+    var bases = [words.join("-"), words.join("_"), words.join(""), words.join(" "),
+                 raw, raw.toLowerCase(),
+                 caps.join("-"), caps.join("_"), caps.join(""), caps.join(" ")];
+    var seen = {}, out = [];
+    bases.forEach(function(b){
+      if (!b || seen[b]) return; seen[b] = 1;
+      EXTS.forEach(function(e){ out.push("logos/" + encodeURIComponent(b) + "." + e); });
+    });
+    return out;
+  }
+
+  function fallback(img){
+    var fb = img.getAttribute("data-fb"), n = img.getAttribute("data-n");
+    cache[n] = "";
+    if (fb === "remove"){ img.remove(); return; }
+    var d = document.createElement("div");
+    d.className = "ini";
+    d.textContent = initials(n);
+    img.replaceWith(d);
+  }
+
+  window.dhsLogoErr = function(img){
+    var n = img.getAttribute("data-n");
+    var list = candidates(n), i = +img.getAttribute("data-i") + 1;
+    if (i >= list.length){ fallback(img); return; }
+    img.setAttribute("data-i", i);
+    img.src = list[i];
+  };
+  window.dhsLogoOk = function(img){
+    cache[img.getAttribute("data-n")] = img.getAttribute("src");
+  };
+
+  window.dhsLogo = function(name, o){
+    o = o || {};
+    var n = String(name);
+    var attrs = ' class="' + esc(o.cls || "") + '" alt="" loading="lazy" data-n="' + esc(n) + '" data-i="0" data-fb="' + (o.fb || "ini") + '"' +
+                (o.w ? ' width="' + o.w + '"' : "") + (o.h ? ' height="' + o.h + '"' : "") +
+                ' onerror="dhsLogoErr(this)" onload="dhsLogoOk(this)"';
+    if (cache[n] === "")                                  /* already known to have no logo */
+      return o.fb === "remove" ? "" : '<div class="ini">' + esc(initials(n)) + '</div>';
+    var first = cache[n] || candidates(n)[0];
+    return '<img src="' + first + '"' + attrs + '>';
+  };
+})();
+
+</script>
+<script src="nav.js" defer></script>
+<link rel="stylesheet" href="loader.css">
+<script src="loader.js" defer></script>
+<script src="bg-video.js" defer></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><img src="icon-192-v2.png" alt="D’Iberville Warriors logo"><div><b>D’IBERVILLE ATHLETICS</b><span>Season 2026–2027</span></div></div>
+  <div class="wip" role="status"><div>WORK IN PROGRESS · MORE SPORTS COMING SOON</div></div>
+
+  <div class="eyebrow">MAIN MENU</div>
+  <h1>Pick your sport</h1>
+  <p class="lede">Choose a sport, then a team, to see schedules, player stats, leaders and box scores.</p>
+
+  <div class="cards" style="margin-top:20px">
+    <a class="card sport" href="basketball.html" style="--c:#f9a71f">
+      <div class="h"><img src="icons/basketball.png" alt=""><div><h3>Basketball</h3><p>Girls &amp; Boys · Varsity &amp; JV</p></div></div>
+      <div class="f"><span class="open" style="color:#f9a71f">Open basketball <i class="ar">→</i></span><span class="pill"><b>4</b> teams</span></div>
+    </a>
+    <a class="card sport" href="soccer.html" style="--c:#f9a71f">
+      <div class="h"><img src="icons/soccer.png" alt=""><div><h3>Soccer</h3><p>Girls &amp; Boys · Varsity &amp; JV</p></div></div>
+      <div class="f"><span class="open" style="color:#f9a71f">Open soccer <i class="ar">→</i></span><span class="pill"><b>4</b> teams</span></div>
+    </a>
+  </div>
+
+  <section id="latest-results" aria-label="Latest results across all teams"></section>
+
+  <section class="inst" id="get-the-app" aria-labelledby="inst-h">
+    <div class="eyebrow">GET THE APP</div>
+    <h2 id="inst-h">Add it to your home screen</h2>
+    <p class="lede">Put D’Iberville Athletics on your phone like a regular app: one tap to open, full screen, no browser bars. It’s free and takes about 15 seconds.</p>
+
+    <div class="guides">
+      <div class="guide">
+        <div class="gh">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18.5h2"/></svg>
+          <h3>iPhone &amp; iPad</h3>
+        </div>
+        <p class="via">Use Safari</p>
+        <ol>
+          <li>Open this website in <b>Safari</b>.</li>
+          <li>Tap the <b>Share</b> button
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3M8 7l4-4 4 4M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>
+            (bottom of the screen on iPhone, top on iPad).</li>
+          <li>Scroll down and tap <b>Add to Home Screen</b>.</li>
+          <li>Leave the name as “DHS Stats” and tap <b>Add</b>.</li>
+        </ol>
+        <p class="tip">Don’t see it? Tap “More” or scroll the share sheet. On iPhones with newer iOS versions, other browsers like Chrome can do this too, but Safari always works.</p>
+      </div>
+
+      <div class="guide">
+        <div class="gh">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18.5h2"/></svg>
+          <h3>Android</h3>
+        </div>
+        <p class="via">Use Chrome</p>
+        <ol>
+          <li>Open this website in <b>Chrome</b>.</li>
+          <li>Tap the <b>menu</b> button
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="12" cy="19" r="1.2"/></svg>
+            in the top-right corner.</li>
+          <li>Tap <b>Install app</b> (or <b>Add to Home screen</b>).</li>
+          <li>Tap <b>Install</b> or <b>Add</b> to confirm.</li>
+        </ol>
+        <p class="tip">Using Samsung Internet or Firefox? Open the menu and look for “Add page to” → “Home screen” or “Install.”</p>
+      </div>
+    </div>
+
+    <p class="done">Done! Look for the gold <b style="color:var(--gold)">DHS</b> icon on your home screen and open it from there.</p>
+  </section>
+
+  <footer>© D’Iberville Athletics 2026 · Work in progress · Made by Minh Tran Nguyen</footer>
+</div>
+<script>
+/* "Latest results" strip for the main menu (index.html).
+   Pulls the newest finished games from all 8 team sheets (basketball + soccer) and shows them
+   as cards. It places itself between the "Pick your sport" cards and the "Get the app" section.
+   Needs logos.js loaded first. */
+(function(){
+  var MAX = 6;                                     /* how many cards to show */
+  var GID = {sched:1598752444, log:1696552548};
+
+  var BB = {
+    PUB_V:  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTnya9kcfLmsGzYh4hxF0uiv9o9VyIRpfN__YCz3lgHZOuWrIiDbK8JMpCsz4o0VIMRQiDGF4SU_Swk/pubhtml",
+    PUB_JV: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ44GizEl-QSqMxkmIrr0jCHxqbbGOF8dzLUQXTZVxhVaxWu6gk31UGzuOw5an5gczQP83_i7Yv2mHI/pubhtml",
+    PUB_BV: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSpDXdB018lquHSr0fnhvg9S8P114LzLHDSDJHOcIZurwnKG_6W8zqaQJn2JniBDTOKt_pseFpCH5A1/pubhtml",
+    PUB_BJV:"https://docs.google.com/spreadsheets/d/e/2PACX-1vQiF8TSkPAyRmv-hcX2HC8w8_jq39xUOc5-YJDlqsvDRUBf8svrZ7vD0_9lgypMF4vpFHbLPhDTKrMc/pubhtml"
+  };
+  var SC = {
+    PUB_V:  "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ04weNQhPndf6Sv4JCgfGW7-L4hZUCTcN9C7lO-8Vq27gXMT0CzOvj-Q5bYvjKSjfTS7BRkzbSpT5c/pubhtml",
+    PUB_JV: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT63WlAxghdCtvfn71oRRCU3ShkME7l2b_VQdMRhl1yOSm9zQH8NpipkjErasM-TXnlUqzz_ewR-kDo/pubhtml",
+    PUB_BV: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjVXjgqb56GLqtB-9yCqydGQPrzPW1dO1B9tq3h_bjJO6WJ-VTSgVc8B_0UO7agDzx06v6WFE-Bl6e/pubhtml",
+    PUB_BJV:"https://docs.google.com/spreadsheets/d/e/2PACX-1vTL-8f1n_1Y4KYfTTz6YYMjz70ig-oe0S-YFMnjhLryhxGIcKffwwT0VmKQUgmRSCMUQjiX0FzHC31i/pubhtml"
+  };
+
+  /* pog = how the "player of the game" is scored and shown, per sport (same rules as the hub pages) */
+  var num = function(v){ var n = parseFloat(String(v == null ? "" : v)); return isNaN(n) ? NaN : n; };
+  var bbScore = function(p){ var n = function(k){ return num(p[k]) || 0; };
+    return n("PTS") + .4*n("FGM") - .7*n("FGA") - .4*(n("FTA") - n("FTM")) + .7*n("OREB") + .3*n("DREB") + n("STL") + .7*n("AST") + .7*n("BLK") - .4*n("PF") - n("TOV"); };
+  var bbLine = function(p){ return ["PTS","AST","REB","STL","BLK"].filter(function(k){ return num(p[k]) >= 3; }).map(function(k){ return num(p[k]) + " " + k; }).join(" · "); };
+  var scScore = function(p){ var n = function(k){ return num(p[k]) || 0; };
+    return 3*n("G") + 2*n("A") + .2*n("SOT") + .3*n("SAV") + .3*n("TKL") + 1.5*n("CS") - .5*n("YC") - 2*n("RC"); };
+  var scLine = function(p){ return ["G","A","SAV","TKL"].filter(function(k){ return num(p[k]) >= 1; }).map(function(k){ return num(p[k]) + " " + k; }).join(" · ") + (num(p.CS) >= 1 ? " · CS" : ""); };
+
+  var SPORTS = [
+    {label:"Basketball", pubs:BB, score:bbScore, line:bbLine, teams:[["Girls Varsity","girls-varsity.html","PUB_V"],["Girls JV","girls-jv.html","PUB_JV"],["Boys Varsity","boys-varsity.html","PUB_BV"],["Boys JV","boys-jv.html","PUB_BJV"]]},
+    {label:"Soccer",     pubs:SC, score:scScore, line:scLine, teams:[["Girls Varsity","soccer-girls-varsity.html","PUB_V"],["Girls JV","soccer-girls-jv.html","PUB_JV"],["Boys Varsity","soccer-boys-varsity.html","PUB_BV"],["Boys JV","soccer-boys-jv.html","PUB_BJV"]]}
+  ];
+
+  /* ---------- styles (self-contained, so it looks right whatever index.html's CSS has) ---------- */
+  var css = [
+    "#latest-results{margin:44px 0 0}",
+    "#latest-results .lr-eye{font:700 13px 'Barlow Condensed',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#f9a71f;margin:0 0 4px;text-shadow:0 0 14px rgba(249,167,31,.5)}",
+    "#latest-results h2{font:800 30px/1 'Barlow Condensed',sans-serif;text-transform:uppercase;color:#f1f2f4;margin:0 0 14px;text-shadow:0 0 30px rgba(249,167,31,.22)}",
+    ".lr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}",
+    ".lr-msg{background:#181b21;border:1px solid #2b2f36;border-radius:12px;padding:18px;color:#9aa1ad}",
+    "a.lr-card{position:relative;display:block;background:#181b21;border:1px solid rgba(249,167,31,.3);border-radius:12px;padding:14px;color:inherit;text-decoration:none;box-shadow:0 0 0 1px rgba(249,167,31,.1),0 8px 30px rgba(249,167,31,.08);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease,background .25s ease}",
+    "a.lr-card:hover,a.lr-card:focus-visible{transform:translateY(-4px);border-color:#f9a71f;background:linear-gradient(160deg,#2a2314,#1a1c21);box-shadow:0 0 0 1px #f9a71f,0 0 30px rgba(249,167,31,.45),0 14px 44px rgba(249,167,31,.2);outline:none}",
+    ".lr-m{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;font-size:13px;color:#9aa1ad}",
+    ".lr-m b{color:#f1f2f4;font:700 15px 'Barlow Condensed',sans-serif;letter-spacing:.05em;text-transform:uppercase}",
+    ".lr-tl{width:18px;height:18px;border-radius:4px;vertical-align:-4px;margin-right:6px}",
+    ".lr-r{text-align:right;line-height:1.25}",
+    ".lr-fin{display:block;color:#3fb871;font-weight:700}",
+    ".lr-vs{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;text-align:center;margin:12px 0}",
+    ".lr-t img,.lr-t .ini{width:44px;height:44px;border-radius:11px;margin:0 auto 4px;display:block}",
+    ".lr-t img.op{object-fit:contain;border-radius:0}",
+    ".lr-t .ini{background:#2a2e35;display:grid;place-items:center;font:800 18px 'Barlow Condensed',sans-serif;color:#9aa1ad}",
+    ".lr-t .n{font:700 14px 'Barlow Condensed',sans-serif;letter-spacing:.04em;text-transform:uppercase;color:#9aa1ad}",
+    ".lr-t .s{font:800 40px/1 'Barlow Condensed',sans-serif}",
+    ".lr-t.w .s{color:#f1f2f4}.lr-t.l .s{color:#9aa1ad}",
+    ".lr-dash{color:#9aa1ad}",
+    ".lr-ts{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;border-top:1px solid #2b2f36;padding-top:9px;font:700 14px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase}",
+    ".lr-ts>span:first-child{color:#f9a71f}",
+    ".lr-pg{display:flex;flex-direction:column;align-items:flex-end;gap:1px;text-align:right;text-transform:none;letter-spacing:0}",
+    ".lr-pg b{font:600 15px Barlow,system-ui,sans-serif;color:#f1f2f4}",
+    ".lr-pg i{font:600 13px Barlow,system-ui,sans-serif;font-style:normal;color:#f9a71f;letter-spacing:.02em}",
+    "@media (prefers-reduced-motion:reduce){a.lr-card{transition:none}a.lr-card:hover{transform:none}}"
+  ].join("\n");
+  var st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
+
+  /* ---------- helpers ---------- */
+  var esc = function(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); };
+  function csv(t){
+    var rows = [], r = [], f = "", q = false;
+    for (var i = 0; i < t.length; i++){
+      var c = t[i];
+      if (q){ if (c === '"'){ if (t[i+1] === '"'){ f += '"'; i++; } else q = false; } else f += c; }
+      else if (c === '"') q = true;
+      else if (c === ","){ r.push(f); f = ""; }
+      else if (c === "\n"){ r.push(f); rows.push(r); r = []; f = ""; }
+      else if (c !== "\r") f += c;
+    }
+    if (f !== "" || r.length){ r.push(f); rows.push(r); }
+    return rows;
+  }
+  function objs(rows, key){
+    var h = rows.findIndex(function(r){ return r.some(function(c){ return c.trim() === key; }); });
+    if (h < 0) return [];
+    var head = rows[h].map(function(x){ return x.trim(); });
+    return rows.slice(h + 1).map(function(r){ var o = {}; head.forEach(function(k, i){ o[k] = (r[i] == null ? "" : r[i]).trim(); }); return o; });
+  }
+  function grab(pub, gid){
+    var id = (pub.match(/\/e\/([^\/]+)/) || [, pub])[1];
+    return fetch("https://docs.google.com/spreadsheets/d/e/" + id + "/pub?gid=" + gid + "&single=true&output=csv&t=" + Date.now(), {cache:"no-store"})
+      .then(function(res){ if (!res.ok) throw new Error(res.status); return res.text(); }).then(csv);
+  }
+  var dateStr = function(s){ var p = String(s).split("/"), d = new Date(+p[2], p[0] - 1, +p[1]); return isNaN(d) ? s : d.toLocaleDateString("en-US", {month:"short", day:"numeric", year:"numeric"}); };
+  var dayKey = function(d){ var p = String(d).split("/"); return Math.floor(Date.UTC(+p[2], p[0] - 1, +p[1]) / 86400000) || 0; };
+
+  function loadTeam(sp, t){
+    var pub = sp.pubs[t[2]];
+    return Promise.all([grab(pub, GID.sched), grab(pub, GID.log)]).then(function(ab){
+      var G = objs(ab[0], "Game #").filter(function(g){ return g.Opponent && g["Our Score"] !== "" && !isNaN(num(g["Our Score"])); });
+      var L = objs(ab[1], "Game #").filter(function(x){ return x.Player; });
+      return G.map(function(g){
+        var pog = L.filter(function(x){ return x["Game #"] === g["Game #"]; }).sort(function(p, q){ return sp.score(q) - sp.score(p); })[0];
+        return {sp:sp, team:t[0], page:t[1], g:g, pog:pog, k:dayKey(g.Date) * 1000 + (num(g["Game #"]) || 0)};
+      });
+    });
+  }
+
+  function card(it){
+    var g = it.g, win = g.Result === "W", tie = g.Result === "T";
+    var line = it.pog ? it.sp.line(it.pog) : "";
+    return '<a class="lr-card" href="' + it.page + '#g' + esc(g["Game #"]) + '">' +
+      '<div class="lr-m"><span><img class="lr-tl" src="diberville_warriors.png" style="object-fit:contain;border-radius:0" alt=""><b>' + esc(it.team) + '</b> · ' + it.sp.label + '</span>' +
+        '<span class="lr-r"><span class="lr-fin">FINAL</span>' + esc(dateStr(g.Date)) + '</span></div>' +
+      '<div class="lr-vs">' +
+        '<div class="lr-t ' + (win || tie ? "w" : "l") + '"><img class="op" src="diberville_warriors.png" alt=""><div class="n">D’Iberville</div><div class="s">' + esc(g["Our Score"]) + '</div></div>' +
+        '<div class="lr-dash">–</div>' +
+        '<div class="lr-t ' + (win ? "l" : "w") + '">' + window.dhsLogo(g.Opponent, {cls:"op", fb:"ini"}) + '<div class="n">' + esc(g.Opponent) + '</div><div class="s">' + esc(g["Opp Score"]) + '</div></div>' +
+      '</div>' +
+      (it.pog ? '<div class="lr-ts"><span>Player of the game</span><span class="lr-pg"><b>' + esc(it.pog.Player) + '</b>' + (line ? '<i>' + line + '</i>' : "") + '</span></div>' : "") +
+    '</a>';
+  }
+
+  /* ---------- placement ---------- */
+  function findAnchor(){
+    var txt = function(e){ return (e.textContent || "").replace(/\s+/g, " ").trim().toLowerCase(); };
+    var app = null, menu = null, all = document.body.querySelectorAll("*");
+    for (var i = 0; i < all.length; i++){
+      var e = all[i]; if (/^(SCRIPT|STYLE)$/.test(e.tagName) || e.closest("#latest-results")) continue;
+      var t = txt(e);
+      if (!app && t === "get the app") app = e;
+      if (!menu && t === "main menu") menu = e;
+    }
+    if (!app) return null;
+    var a = app;
+    while (a.parentElement && a.parentElement !== document.body && !(menu ? a.parentElement.contains(menu) : a.parentElement.children.length > 1)) a = a.parentElement;
+    return a;
+  }
+  function mount(){
+    var host = document.getElementById("latest-results");
+    if (!host){
+      host = document.createElement("section"); host.id = "latest-results";
+      var a = findAnchor();
+      if (a && a.parentNode) a.parentNode.insertBefore(host, a);
+      else { var w = document.querySelector(".wrap") || document.body, f = w.querySelector("footer"); w.insertBefore(host, f || null); }
+    }
+    host.innerHTML = '<div class="lr-eye">Across all teams</div><h2>Latest results</h2><div class="lr-grid" id="lr-grid"><div class="lr-msg">Loading…</div></div>';
+  }
+
+  function load(first){
+    var grid = document.getElementById("lr-grid"); if (!grid) return;
+    var jobs = [];
+    SPORTS.forEach(function(sp){ sp.teams.forEach(function(t){ jobs.push(loadTeam(sp, t).catch(function(){ return null; })); }); });
+    Promise.all(jobs).then(function(out){
+      var items = [].concat.apply([], out.filter(Boolean)).sort(function(x, y){ return y.k - x.k; }).slice(0, MAX);
+      if (!items.length){ if (first) grid.innerHTML = '<div class="lr-msg">No results yet. Check back after the next game.</div>'; return; }
+      grid.innerHTML = items.map(card).join("");
+    });
+  }
+
+  function start(){ mount(); load(true); setInterval(function(){ load(false); }, 120000); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
+})();
+
+</script>
+</body>
+</html>
