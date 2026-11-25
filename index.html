@@ -109,6 +109,26 @@ body{min-height:100vh;background-repeat:no-repeat}
 .stats-promo{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:30px 0 0;padding:19px 20px;border:1px solid rgba(249,167,31,.38);border-radius:14px;background:linear-gradient(110deg,rgba(249,167,31,.13),rgba(24,27,33,.94) 62%);box-shadow:0 0 24px rgba(249,167,31,.08)}
 .stats-promo .eyebrow{margin:0 0 5px}.stats-promo h2{margin:0 0 5px}.stats-promo p{margin:0;color:var(--mute);font-size:14px}.stats-promo>a{flex:none;background:var(--gold);color:#17191e;border-radius:9px;padding:11px 15px;text-decoration:none;font-weight:700}.stats-promo>a span{font-size:18px;margin-left:6px}
 @media(max-width:600px){.stats-promo{align-items:flex-start;flex-direction:column}.stats-promo>a{width:100%;text-align:center}}
+
+/* PHASE 10 — homepage dashboard */
+.home-hero{position:relative;margin:22px 0 26px;padding:clamp(22px,4vw,38px);border:1px solid rgba(249,167,31,.42);border-radius:18px;overflow:hidden;background:radial-gradient(ellipse at 90% 10%,rgba(249,167,31,.2),transparent 42%),linear-gradient(120deg,#242019,#171a20 65%);box-shadow:0 12px 42px rgba(0,0,0,.24),0 0 30px rgba(249,167,31,.08)}
+.home-hero:after{content:"";position:absolute;width:220px;height:220px;right:-60px;bottom:-105px;border:1px solid rgba(249,167,31,.2);border-radius:50%;box-shadow:0 0 0 22px rgba(249,167,31,.035),0 0 0 48px rgba(249,167,31,.025);pointer-events:none}
+.home-hero .eyebrow{margin:0 0 9px}.home-hero h1{max-width:700px;margin:0 0 12px}.home-hero .lede{max-width:58ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.hero-actions a{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 16px;border-radius:9px;text-decoration:none;font-weight:700;border:1px solid rgba(249,167,31,.45);color:var(--ink);background:#22252b}
+.hero-actions a.primary{background:var(--gold);color:#17191e;border-color:var(--gold)}
+.dash-heading{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:34px 0 13px}
+.dash-heading .eyebrow{margin:0 0 4px}.dash-heading h2{margin:0}
+.dash-heading a{color:var(--gold);font-weight:600;font-size:14px}
+.dash-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0 26px}
+.dash-link{min-height:112px;padding:15px;border-radius:12px;border:1px solid var(--line);background:linear-gradient(145deg,#20242c,#171a20);text-decoration:none;color:var(--ink);display:flex;flex-direction:column;justify-content:space-between;gap:12px;transition:.2s}
+.dash-link:hover,.dash-link:focus-visible{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,167,31,.12);outline:none}
+.dash-link .di{font:800 25px "Barlow Condensed",sans-serif;color:var(--gold)}
+.dash-link b{font:700 20px "Barlow Condensed",sans-serif;text-transform:uppercase}
+.dash-link small{color:var(--mute);font-size:13px}
+#global-player-search{margin-top:30px}
+@media(max-width:760px){.dash-links{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:420px){.dash-links{gap:8px}.dash-link{padding:12px;min-height:105px}.hero-actions a{flex:1}}
 </style>
 <link rel="stylesheet" href="nav.css">
 <link rel="stylesheet" href="player-search.css">
@@ -197,11 +217,18 @@ body{min-height:100vh;background-repeat:no-repeat}
 <div class="wrap">
   <div class="top"><img src="icon-192-v2.png" alt="D’Iberville Warriors logo"><div><b>D’IBERVILLE ATHLETICS</b><span>Season 2026–2027</span></div></div>
 
-  <div class="eyebrow">MAIN MENU</div>
-  <h1>Pick your sport</h1>
-  <p class="lede">Choose a sport, then a team, to see schedules, player stats, leaders and box scores.</p>
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="eyebrow">WARRIORS ATHLETICS · 2026–2027</div>
+    <h1 id="home-title">The home of D’Iberville Warriors athletics.</h1>
+    <p class="lede">Schedules, scores, team information, athlete statistics, and season achievements — all in one place.</p>
+    <div class="hero-actions">
+      <a class="primary" href="#latest-results">View latest results <span aria-hidden="true">→</span></a>
+      <a href="basketball.html">Explore teams <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
 
-  <div class="cards" style="margin-top:20px">
+  <div class="dash-heading"><div><div class="eyebrow">START HERE</div><h2>Explore Warriors sports</h2></div></div>
+  <div class="cards" style="margin-top:0">
     <a class="card sport" href="basketball.html" style="--c:#f9a71f">
       <div class="h"><img src="icons/basketball.png" alt=""><div><h3>Basketball</h3><p>Girls &amp; Boys · Varsity, JV &amp; Freshman</p></div></div>
       <div class="f"><span class="open" style="color:#f9a71f">Open basketball <i class="ar">→</i></span><span class="pill"><b>5</b> teams</span></div>
@@ -211,6 +238,16 @@ body{min-height:100vh;background-repeat:no-repeat}
       <div class="f"><span class="open" style="color:#f9a71f">Open soccer <i class="ar">→</i></span><span class="pill"><b>4</b> teams</span></div>
     </a>
   </div>
+
+  <section id="latest-results" aria-label="Latest results across all teams"></section>
+
+  <div class="dash-heading"><div><div class="eyebrow">WARRIORS HUB</div><h2>Everything athletics</h2></div></div>
+  <nav class="dash-links" aria-label="Athletics quick links">
+    <a class="dash-link" href="game-center.html"><span class="di">01</span><span><b>Game Center</b><br><small>Scores, schedules &amp; team records</small></span></a>
+    <a class="dash-link" href="stats-center.html"><span class="di">02</span><span><b>Stats Center</b><br><small>Player statistics &amp; comparisons</small></span></a>
+    <a class="dash-link" href="advanced-analytics.html"><span class="di">03</span><span><b>Advanced Analytics</b><br><small>Performance trends &amp; insights</small></span></a>
+    <a class="dash-link" href="player-awards.html"><span class="di">04</span><span><b>Player Awards</b><br><small>Recognize standout performances</small></span></a>
+  </nav>
 
   <section id="global-player-search" aria-label="Search players across all teams">
     <h2>Find a player</h2>
@@ -245,8 +282,6 @@ body{min-height:100vh;background-repeat:no-repeat}
     <div><div class="eyebrow">WARRIORS CAREER ARCHIVE</div><h2>Follow the full athlete journey</h2><p>Build verified multi-season player histories using permanent school-assigned Athlete IDs and archived statistics.</p></div>
     <a href="athlete-careers.html">Open Athlete Careers <span aria-hidden="true">→</span></a>
   </section>
-  <section id="latest-results" aria-label="Latest results across all teams"></section>
-
   <section class="inst" id="get-the-app" aria-labelledby="inst-h">
     <div class="eyebrow">GET THE APP</div>
     <h2 id="inst-h">Add it to your home screen</h2>
