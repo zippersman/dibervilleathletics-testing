@@ -22,8 +22,6 @@ body{margin:0;background:radial-gradient(1000px 420px at 50% -80px,#2a2110,trans
 .top img{width:46px;height:46px;border-radius:11px;display:block}
 .top b{font:800 22px/1 "Barlow Condensed",sans-serif;letter-spacing:.02em}
 .top span{display:block;color:var(--mute);font-size:13px}
-.wip{background:repeating-linear-gradient(-45deg,var(--gold) 0 14px,#16181d 14px 28px);border-radius:10px;padding:3px}
-.wip div{background:#16181d;border-radius:8px;padding:9px 14px;text-align:center;font:700 16px "Barlow Condensed",sans-serif;letter-spacing:.14em;color:var(--gold)}
 .eyebrow{font:700 13px "Barlow Condensed",sans-serif;letter-spacing:.14em;color:var(--gold);margin:30px 0 4px}
 h1{font:800 clamp(38px,8vw,64px)/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:6px 0 8px}
 h2{font:800 30px/1 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:0 0 14px}
@@ -107,8 +105,13 @@ a.card:hover img{filter:drop-shadow(0 0 12px rgba(249,167,31,.8))}
 /* fill the whole screen and don't tile the glow, which caused a cut-off strip at the bottom of short pages */
 html{background:#0e0f12}
 body{min-height:100vh;background-repeat:no-repeat}
+
+.stats-promo{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:30px 0 0;padding:19px 20px;border:1px solid rgba(249,167,31,.38);border-radius:14px;background:linear-gradient(110deg,rgba(249,167,31,.13),rgba(24,27,33,.94) 62%);box-shadow:0 0 24px rgba(249,167,31,.08)}
+.stats-promo .eyebrow{margin:0 0 5px}.stats-promo h2{margin:0 0 5px}.stats-promo p{margin:0;color:var(--mute);font-size:14px}.stats-promo>a{flex:none;background:var(--gold);color:#17191e;border-radius:9px;padding:11px 15px;text-decoration:none;font-weight:700}.stats-promo>a span{font-size:18px;margin-left:6px}
+@media(max-width:600px){.stats-promo{align-items:flex-start;flex-direction:column}.stats-promo>a{width:100%;text-align:center}}
 </style>
 <link rel="stylesheet" href="nav.css">
+<link rel="stylesheet" href="player-search.css">
 <script>
 /* Shared opponent-logo loader.
    Instead of asking for exactly one file (logos/<slug>.png) and giving up, this tries the
@@ -176,14 +179,22 @@ body{min-height:100vh;background-repeat:no-repeat}
 
 </script>
 <script src="nav.js" defer></script>
+<script src="global-player-search.js" defer></script>
 <link rel="stylesheet" href="loader.css">
 <script src="loader.js" defer></script>
-<script src="bg-video.js" defer></script>
+<style>
+.dhs-contact{margin-top:6px;line-height:1.6}
+.dhs-contact a{color:var(--gold,#f9a71f);text-decoration:underline;text-underline-offset:2px}
+.dhs-foot{margin-top:18px;margin-bottom:40px;color:var(--mute,#9aa1ad);font-size:13px;text-align:center}
+.retry{margin-top:12px;background:var(--gold,#f9a71f);color:#111;border:0;border-radius:8px;padding:10px 18px;font:700 14px Barlow,system-ui,sans-serif;cursor:pointer}
+.retry:hover,.retry:focus-visible{filter:brightness(1.1);outline:2px solid #fff;outline-offset:2px}
+.dhs-nojs{margin:16px;padding:14px 16px;border:1px solid #f9a71f;border-radius:10px;background:#181b21;color:#f1f2f4;font:16px/1.5 system-ui,sans-serif}
+</style>
 </head>
 <body>
+<noscript><div class="dhs-nojs"><b>JavaScript is turned off.</b> This site needs JavaScript to load schedules and stats. Please turn it on in your browser settings and reload. Questions? Email Minh.TranNguyen@harrison.k12.ms.us.</div></noscript>
 <div class="wrap">
   <div class="top"><img src="icon-192-v2.png" alt="D’Iberville Warriors logo"><div><b>D’IBERVILLE ATHLETICS</b><span>Season 2026–2027</span></div></div>
-  <div class="wip" role="status"><div>WORK IN PROGRESS · MORE SPORTS COMING SOON</div></div>
 
   <div class="eyebrow">MAIN MENU</div>
   <h1>Pick your sport</h1>
@@ -191,8 +202,8 @@ body{min-height:100vh;background-repeat:no-repeat}
 
   <div class="cards" style="margin-top:20px">
     <a class="card sport" href="basketball.html" style="--c:#f9a71f">
-      <div class="h"><img src="icons/basketball.png" alt=""><div><h3>Basketball</h3><p>Girls &amp; Boys · Varsity &amp; JV</p></div></div>
-      <div class="f"><span class="open" style="color:#f9a71f">Open basketball <i class="ar">→</i></span><span class="pill"><b>4</b> teams</span></div>
+      <div class="h"><img src="icons/basketball.png" alt=""><div><h3>Basketball</h3><p>Girls &amp; Boys · Varsity, JV &amp; Freshman</p></div></div>
+      <div class="f"><span class="open" style="color:#f9a71f">Open basketball <i class="ar">→</i></span><span class="pill"><b>5</b> teams</span></div>
     </a>
     <a class="card sport" href="soccer.html" style="--c:#f9a71f">
       <div class="h"><img src="icons/soccer.png" alt=""><div><h3>Soccer</h3><p>Girls &amp; Boys · Varsity &amp; JV</p></div></div>
@@ -200,6 +211,19 @@ body{min-height:100vh;background-repeat:no-repeat}
     </a>
   </div>
 
+  <section id="global-player-search" aria-label="Search players across all teams">
+    <h2>Find a player</h2>
+    <p>Search the rosters across all nine basketball and soccer teams.</p>
+    <label class="sr-only" for="global-player-query">Player name or jersey number</label>
+    <input id="global-player-query" type="search" placeholder="Search player name or jersey number…" autocomplete="off" aria-label="Search player name or jersey number">
+    <span data-status role="status" aria-live="polite">Loading player directory…</span>
+    <div data-results></div>
+    <button type="button" data-retry hidden>Retry</button>
+  </section>
+  <section class="stats-promo" aria-label="Statistics Center">
+    <div><div class="eyebrow">WARRIORS DATA &amp; ANALYTICS</div><h2>Take a closer look at the numbers</h2><p>Compare players across all nine teams in the new Statistics Center.</p></div>
+    <a href="stats-center.html">Open Statistics Center <span aria-hidden="true">→</span></a>
+  </section>
   <section id="latest-results" aria-label="Latest results across all teams"></section>
 
   <section class="inst" id="get-the-app" aria-labelledby="inst-h">
@@ -246,11 +270,11 @@ body{min-height:100vh;background-repeat:no-repeat}
     <p class="done">Done! Look for the gold <b style="color:var(--gold)">DHS</b> icon on your home screen and open it from there.</p>
   </section>
 
-  <footer>© D’Iberville Athletics 2026 · Work in progress · Made by Minh Tran Nguyen</footer>
+  <footer>© D’Iberville Athletics 2026 · Made by Minh Tran Nguyen<div class="dhs-contact">Spot a mistake or have a question? <a id="dhs-report" href="mailto:minhtrannguyen2007@gmail.com,Minh.TranNguyen@harrison.k12.ms.us">Report it</a><br>Minh.TranNguyen@harrison.k12.ms.us &middot; minhtrannguyen2007@gmail.com</div></footer>
 </div>
 <script>
 /* "Latest results" strip for the main menu (index.html).
-   Pulls the newest finished games from all 8 team sheets (basketball + soccer) and shows them
+   Pulls the newest finished games from all 9 team sheets (basketball + soccer) and shows them
    as cards. It places itself between the "Pick your sport" cards and the "Get the app" section.
    Needs logos.js loaded first. */
 (function(){
@@ -261,7 +285,8 @@ body{min-height:100vh;background-repeat:no-repeat}
     PUB_V:  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTnya9kcfLmsGzYh4hxF0uiv9o9VyIRpfN__YCz3lgHZOuWrIiDbK8JMpCsz4o0VIMRQiDGF4SU_Swk/pubhtml",
     PUB_JV: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ44GizEl-QSqMxkmIrr0jCHxqbbGOF8dzLUQXTZVxhVaxWu6gk31UGzuOw5an5gczQP83_i7Yv2mHI/pubhtml",
     PUB_BV: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSpDXdB018lquHSr0fnhvg9S8P114LzLHDSDJHOcIZurwnKG_6W8zqaQJn2JniBDTOKt_pseFpCH5A1/pubhtml",
-    PUB_BJV:"https://docs.google.com/spreadsheets/d/e/2PACX-1vQiF8TSkPAyRmv-hcX2HC8w8_jq39xUOc5-YJDlqsvDRUBf8svrZ7vD0_9lgypMF4vpFHbLPhDTKrMc/pubhtml"
+    PUB_BJV:"https://docs.google.com/spreadsheets/d/e/2PACX-1vQiF8TSkPAyRmv-hcX2HC8w8_jq39xUOc5-YJDlqsvDRUBf8svrZ7vD0_9lgypMF4vpFHbLPhDTKrMc/pubhtml",
+    PUB_BF:"https://docs.google.com/spreadsheets/d/e/2PACX-1vSVQvdme6lwkdvL3yDPb8CUBxn3aXKHRHte6B581ujRndGD_ZEDk3wRvPQUvujGdcX4jC12nw5vXnsp/pubhtml"
   };
   var SC = {
     PUB_V:  "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ04weNQhPndf6Sv4JCgfGW7-L4hZUCTcN9C7lO-8Vq27gXMT0CzOvj-Q5bYvjKSjfTS7BRkzbSpT5c/pubhtml",
@@ -280,7 +305,7 @@ body{min-height:100vh;background-repeat:no-repeat}
   var scLine = function(p){ return ["G","A","SAV","TKL"].filter(function(k){ return num(p[k]) >= 1; }).map(function(k){ return num(p[k]) + " " + k; }).join(" · ") + (num(p.CS) >= 1 ? " · CS" : ""); };
 
   var SPORTS = [
-    {label:"Basketball", pubs:BB, score:bbScore, line:bbLine, teams:[["Girls Varsity","girls-varsity.html","PUB_V"],["Girls JV","girls-jv.html","PUB_JV"],["Boys Varsity","boys-varsity.html","PUB_BV"],["Boys JV","boys-jv.html","PUB_BJV"]]},
+    {label:"Basketball", pubs:BB, score:bbScore, line:bbLine, teams:[["Girls Varsity","girls-varsity.html","PUB_V"],["Girls JV","girls-jv.html","PUB_JV"],["Boys Varsity","boys-varsity.html","PUB_BV"],["Boys JV","boys-jv.html","PUB_BJV"],["Boys Freshman","boys-freshman.html","PUB_BF"]]},
     {label:"Soccer",     pubs:SC, score:scScore, line:scLine, teams:[["Girls Varsity","soccer-girls-varsity.html","PUB_V"],["Girls JV","soccer-girls-jv.html","PUB_JV"],["Boys Varsity","soccer-boys-varsity.html","PUB_BV"],["Boys JV","soccer-boys-jv.html","PUB_BJV"]]}
   ];
 
@@ -403,15 +428,26 @@ body{min-height:100vh;background-repeat:no-repeat}
     SPORTS.forEach(function(sp){ sp.teams.forEach(function(t){ jobs.push(loadTeam(sp, t).catch(function(){ return null; })); }); });
     Promise.all(jobs).then(function(out){
       var items = [].concat.apply([], out.filter(Boolean)).sort(function(x, y){ return y.k - x.k; }).slice(0, MAX);
-      if (!items.length){ if (first) grid.innerHTML = '<div class="lr-msg">No results yet. Check back after the next game.</div>'; return; }
+      if (!items.length){ if (first) grid.innerHTML = out.every(function(x){ return !x; })
+        ? '<div class="lr-msg" role="alert">Couldn’t load results right now. Check your connection and try again.<br><button type="button" class="retry" onclick="dhsLoadResults()">Try again</button></div>'
+        : '<div class="lr-msg">No results yet. Check back after the next game.</div>'; return; }
       grid.innerHTML = items.map(card).join("");
     });
   }
 
+  window.dhsLoadResults = function(){ var g = document.getElementById("lr-grid"); if (g) g.innerHTML = '<div class="lr-msg">Loading…</div>'; load(true); };
   function start(){ mount(); load(true); setInterval(function(){ load(false); }, 120000); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();
 
+</script>
+<script>
+(function(){
+  if ("serviceWorker" in navigator) addEventListener("load", function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); });
+  var a = document.getElementById("dhs-report");
+  if (a) a.href = "mailto:minhtrannguyen2007@gmail.com,Minh.TranNguyen@harrison.k12.ms.us?subject=" + encodeURIComponent("D\u2019Iberville Athletics stats correction") +
+    "&body=" + encodeURIComponent("Page: " + location.href + "\n\nWhat looks wrong:\n");
+})();
 </script>
 </body>
 </html>

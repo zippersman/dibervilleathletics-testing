@@ -22,8 +22,6 @@ body{margin:0;background:radial-gradient(1000px 420px at 50% -80px,#2a2110,trans
 .top img{width:46px;height:46px;border-radius:11px;display:block}
 .top b{font:800 22px/1 "Barlow Condensed",sans-serif;letter-spacing:.02em}
 .top span{display:block;color:var(--mute);font-size:13px}
-.wip{background:repeating-linear-gradient(-45deg,var(--gold) 0 14px,#16181d 14px 28px);border-radius:10px;padding:3px}
-.wip div{background:#16181d;border-radius:8px;padding:9px 14px;text-align:center;font:700 16px "Barlow Condensed",sans-serif;letter-spacing:.14em;color:var(--gold)}
 .eyebrow{font:700 13px "Barlow Condensed",sans-serif;letter-spacing:.14em;color:var(--gold);margin:30px 0 4px}
 h1{font:800 clamp(38px,8vw,64px)/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:6px 0 8px}
 h2{font:800 30px/1 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:0 0 14px}
@@ -97,47 +95,87 @@ a.card:hover img{filter:drop-shadow(0 0 12px rgba(249,167,31,.8))}
 /* fill the whole screen and don't tile the glow, which caused a cut-off strip at the bottom of short pages */
 html{background:#0e0f12}
 body{min-height:100vh;background-repeat:no-repeat}
+
+/* ===== girls (hot pink) and boys (cyan) split ===== */
+.split{display:grid;grid-template-columns:1fr auto 1fr;gap:26px;margin-top:24px;align-items:start}
+.side.girls,a.r.g{--acc:#ff2d95;--accrgb:255,45,149;--accl:255,130,195;--accw:255,226,242;--ficon:hue-rotate(302deg) saturate(2.6)}
+.side.boys,a.r.b{--acc:#22c7ff;--accrgb:34,199,255;--accl:120,220,255;--accw:220,247,255;--ficon:hue-rotate(182deg) saturate(2)}
+.sidelab{display:flex;align-items:center;gap:12px;font:800 34px/1 "Barlow Condensed",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);text-shadow:0 0 22px rgba(var(--accrgb),.55);margin:0 0 12px}
+.sidelab::after{content:"";flex:1;height:2px;background:linear-gradient(90deg,rgba(var(--accrgb),.6),transparent)}
+.vline{width:2px;align-self:stretch;border-radius:2px;background:linear-gradient(180deg,transparent,#ff2d95 18%,#22c7ff 82%,transparent);box-shadow:0 0 14px rgba(255,45,149,.35),0 0 14px rgba(34,199,255,.35)}
+.split .cards{grid-template-columns:1fr;gap:14px;margin-top:0}
+.split .card{min-height:0}
+.side .card img{filter:var(--ficon)}
+.side a.card{border-color:rgba(var(--accrgb),.4);box-shadow:0 0 0 1px rgba(var(--accrgb),.14),0 0 24px rgba(var(--accrgb),.14)}
+.side a.card:hover,.side a.card:focus-visible{border-color:var(--acc);background:linear-gradient(160deg,rgba(var(--accrgb),.2),#1c1d21);box-shadow:0 0 0 1px var(--acc),0 0 30px rgba(var(--accrgb),.55),0 14px 44px rgba(var(--accrgb),.22)}
+.side a.card:focus-visible{outline-color:var(--acc)}
+.side a.card:hover img,.side a.card:focus-visible img{filter:var(--ficon) drop-shadow(0 0 12px rgba(var(--accrgb),.8))}
+.side a.card:hover h3{text-shadow:0 0 18px rgba(var(--accrgb),.65)}
+.side a.card .open{text-shadow:0 0 14px rgba(var(--accrgb),.55)}
+.side .pill b{color:var(--acc)}
+.side a.card::before,a.r.g::before,a.r.b::before{background:linear-gradient(115deg,transparent 36%,rgba(var(--accl),.28) 44%,rgba(var(--accw),.6) 50%,rgba(var(--accl),.28) 56%,transparent 64%)}
+.side a.card::after,a.r.g::after,a.r.b::after{background:radial-gradient(circle at 18% 0%,rgba(var(--accrgb),.28),transparent 62%)}
+@keyframes breatheC{0%,100%{box-shadow:0 0 0 1px rgba(var(--accrgb),.12),0 0 20px rgba(var(--accrgb),.10)}50%{box-shadow:0 0 0 1px rgba(var(--accrgb),.28),0 0 34px rgba(var(--accrgb),.26)}}
+.side a.card:not(:hover){animation:breatheC 4.5s ease-in-out infinite}
+a.r.g,a.r.b{border-color:rgba(var(--accrgb),.3);box-shadow:0 0 0 1px rgba(var(--accrgb),.12),0 8px 30px rgba(var(--accrgb),.10)}
+a.r.g:hover,a.r.g:focus-visible,a.r.b:hover,a.r.b:focus-visible{border-color:var(--acc);background:linear-gradient(160deg,rgba(var(--accrgb),.16),#1a1c21);box-shadow:0 0 0 1px var(--acc),0 0 30px rgba(var(--accrgb),.5),0 14px 44px rgba(var(--accrgb),.22)}
+.r.g .m b,.r.b .m b,.r.g .ts span:first-child,.r.b .ts span:first-child,.r.g .ts .pg i,.r.b .ts .pg i{color:var(--acc)}
+@media (max-width:720px){.split{grid-template-columns:1fr;gap:18px}.vline{width:auto;height:2px;align-self:auto;background:linear-gradient(90deg,transparent,#ff2d95 18%,#22c7ff 82%,transparent)}}
 </style>
 <link rel="stylesheet" href="nav.css">
 <script src="logos.js"></script>
 <script src="nav.js" defer></script>
 <link rel="stylesheet" href="loader.css">
 <script src="loader.js" defer></script>
-<script src="bg-video.js" defer></script>
+<style>
+.dhs-contact{margin-top:6px;line-height:1.6}
+.dhs-contact a{color:var(--gold,#f9a71f);text-decoration:underline;text-underline-offset:2px}
+.dhs-foot{margin-top:18px;margin-bottom:40px;color:var(--mute,#9aa1ad);font-size:13px;text-align:center}
+.retry{margin-top:12px;background:var(--gold,#f9a71f);color:#111;border:0;border-radius:8px;padding:10px 18px;font:700 14px Barlow,system-ui,sans-serif;cursor:pointer}
+.retry:hover,.retry:focus-visible{filter:brightness(1.1);outline:2px solid #fff;outline-offset:2px}
+.dhs-nojs{margin:16px;padding:14px 16px;border:1px solid #f9a71f;border-radius:10px;background:#181b21;color:#f1f2f4;font:16px/1.5 system-ui,sans-serif}
+</style>
 </head>
 <body>
+<noscript><div class="dhs-nojs"><b>JavaScript is turned off.</b> This site needs JavaScript to load schedules and stats. Please turn it on in your browser settings and reload. Questions? Email Minh.TranNguyen@harrison.k12.ms.us.</div></noscript>
 <div class="wrap">
   <div class="top"><img src="icons/soccer.png" alt="D’Iberville Warriors logo"><div><b>D’IBERVILLE SOCCER</b><span>Season 2026–2027</span></div><a class="back" href="index.html">← Main menu</a></div>
-  <div class="wip" role="status"><div>WORK IN PROGRESS · MORE SOCCER STATS COMING SOON</div></div>
 
   <div class="eyebrow">4 TEAMS</div>
   <h1>Pick your team</h1>
   <p class="lede">Choose a team to see its schedule, player stats, leaders and box scores </p>
 
-  <div class="cards" style="margin-top:20px">
-    <a class="card" href="soccer-girls-varsity.html" style="--c:#f9a71f">
+  <div class="split">
+  <section class="side girls" aria-label="Girls teams"><div class="sidelab">Girls</div>
+  <div class="cards">
+    <a class="card" href="soccer-girls-varsity.html" style="--c:var(--acc)">
       <div class="h"><img src="icons/soccer-girls-varsity.png" alt=""><div><h3>Girls Varsity</h3><p>D’Iberville Girls Soccer</p></div></div>
-      <div class="f"><span class="open" style="color:#f9a71f">Open team <i class="ar">→</i></span><span class="pill">Record <b id="rec-v">–</b></span></div>
+      <div class="f"><span class="open" style="color:var(--acc)">Open team <i class="ar">→</i></span><span class="pill">Record <b id="rec-v">–</b></span></div>
     </a>
-    <a class="card" href="soccer-girls-jv.html" style="--c:#f9a71f">
+    <a class="card" href="soccer-girls-jv.html" style="--c:var(--acc)">
       <div class="h"><img src="icons/soccer-girls-jv.png" alt=""><div><h3>Girls JV</h3><p>D’Iberville Girls Junior Varsity</p></div></div>
-      <div class="f"><span class="open" style="color:#f9a71f">Open team <i class="ar">→</i></span><span class="pill">Record <b id="rec-jv">–</b></span></div>
+      <div class="f"><span class="open" style="color:var(--acc)">Open team <i class="ar">→</i></span><span class="pill">Record <b id="rec-jv">–</b></span></div>
     </a>
-    <a class="card" href="soccer-boys-varsity.html" style="--c:#f9a71f">
+  </div></section>
+  <div class="vline" aria-hidden="true"></div>
+  <section class="side boys" aria-label="Boys teams"><div class="sidelab">Boys</div>
+  <div class="cards">
+    <a class="card" href="soccer-boys-varsity.html" style="--c:var(--acc)">
       <div class="h"><img src="icons/soccer-boys-varsity.png" alt=""><div><h3>Boys Varsity</h3><p>D’Iberville Boys Soccer</p></div></div>
-      <div class="f"><span class="open" style="color:#f9a71f">Open team <i class="ar">→</i></span><span class="pill">Record <b id="rec-bv">–</b></span></div>
+      <div class="f"><span class="open" style="color:var(--acc)">Open team <i class="ar">→</i></span><span class="pill">Record <b id="rec-bv">–</b></span></div>
     </a>
-    <a class="card" href="soccer-boys-jv.html" style="--c:#f9a71f">
+    <a class="card" href="soccer-boys-jv.html" style="--c:var(--acc)">
       <div class="h"><img src="icons/soccer-boys-jv.png" alt=""><div><h3>Boys JV</h3><p>D’Iberville Boys Junior Varsity</p></div></div>
-      <div class="f"><span class="open" style="color:#f9a71f">Open team <i class="ar">→</i></span><span class="pill">Record <b id="rec-bjv">–</b></span></div>
+      <div class="f"><span class="open" style="color:var(--acc)">Open team <i class="ar">→</i></span><span class="pill">Record <b id="rec-bjv">–</b></span></div>
     </a>
-  </div>
+  </div></section>
+</div>
 
   <div class="eyebrow" style="margin-top:44px">AROUND THE TEAMS</div>
   <h2>Latest results</h2>
   <div class="res" id="res"><div class="msg">Loading…</div></div>
 
-  <footer>© D’Iberville Soccer 2026 · Work in progress · Made by Minh Tran Nguyen</footer>
+  <footer>© D’Iberville Soccer 2026 · Made by Minh Tran Nguyen<div class="dhs-contact">Spot a mistake or have a question? <a id="dhs-report" href="mailto:minhtrannguyen2007@gmail.com,Minh.TranNguyen@harrison.k12.ms.us">Report it</a><br>Minh.TranNguyen@harrison.k12.ms.us &middot; minhtrannguyen2007@gmail.com</div></footer>
 </div>
 
 <script>
@@ -214,12 +252,14 @@ async function load(first){
   const out = await Promise.all(TEAMS.map(t => loadTeam(t).catch(() => null)));
   const items = out.filter(Boolean).flatMap(a => a.slice().sort((x, y) => y.k - x.k).slice(0, PER_TEAM)).sort((x, y) => y.k - x.k);
   if (!items.length){
-    if (first) $("res").innerHTML = `<div class="msg">Couldn’t load results right now. Please try again in a few minutes.</div>`;
+    if (first) $("res").innerHTML = out.every(a => !a)
+      ? `<div class="msg" role="alert">Couldn’t load results right now. Check your connection and try again.<br><button type="button" class="retry" onclick="document.getElementById('res').innerHTML='<div class=&quot;msg&quot;>Loading…</div>';load(true)">Try again</button></div>`
+      : `<div class="msg">No games have been played yet. Check back after the next game.</div>`;
     return;
   }
   $("res").innerHTML = items.map(({t, g, pog}) => {
     const win = g.Result === "W", tie = g.Result === "T";
-    return `<a class="r" href="${t.page}#g${esc(g["Game #"])}">
+    return `<a class="r ${/^GIRLS/.test(t.name) ? "g" : "b"}" href="${t.page}#g${esc(g["Game #"])}">
       <div class="m"><span><img class="tl" src="diberville_warriors.png" style="object-fit:contain;border-radius:0" alt=""><b>${t.name}</b> · ${esc(dateStr(g.Date))}</span><span class="fin">FINAL</span></div>
       <div class="vs">
         <div class="t ${win || tie ? "w" : "l"}"><img class="op" src="diberville_warriors.png" alt=""><div class="n">D’Iberville</div><div class="s">${esc(g["Our Score"])}</div></div>
@@ -232,6 +272,14 @@ async function load(first){
 }
 load(true);
 setInterval(() => load(false), 120000);
+</script>
+<script>
+(function(){
+  if ("serviceWorker" in navigator) addEventListener("load", function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); });
+  var a = document.getElementById("dhs-report");
+  if (a) a.href = "mailto:minhtrannguyen2007@gmail.com,Minh.TranNguyen@harrison.k12.ms.us?subject=" + encodeURIComponent("D\u2019Iberville Athletics stats correction") +
+    "&body=" + encodeURIComponent("Page: " + location.href + "\n\nWhat looks wrong:\n");
+})();
 </script>
 </body>
 </html>

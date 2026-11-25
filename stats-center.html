@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Statistics Center | D’Iberville Athletics</title>
+<meta name="theme-color" content="#0e0f12"><link rel="icon" type="image/png" href="icon-192-v2.png">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav.css"><link rel="stylesheet" href="stats-center.css">
+<script src="nav.js" defer></script><script src="stats-center.js" defer></script>
+</head>
+<body>
+<header class="hero"><div class="shell hero-in"><div class="eyebrow">WARRIORS · DATA &amp; ANALYTICS</div><h1>Statistics Center</h1><p>Explore the numbers. Compare the players. Follow every team.</p><div class="hero-tags"><span>9 TEAMS</span><span>2 SPORTS</span><span>ONE WARRIOR STANDARD</span></div></div></header>
+<main class="shell">
+  <section class="intro"><div><div class="eyebrow">PLAYER LAB</div><h2>Head-to-head comparison</h2><p>Choose any two athletes from the same sport. Compare season averages, totals, and percentage stats using the latest published team data.</p></div><a class="back-home" href="index.html">← All sports</a></section>
+  <section class="compare-panel" aria-labelledby="compare-title">
+    <div class="panel-top"><div><span class="kicker">COMPARE ATHLETES</span><h2 id="compare-title">Who has the edge?</h2></div><span class="live-pill"><i></i> SHEET CONNECTED</span></div>
+    <div class="selectors">
+      <label>Player one<select id="player-one" disabled><option>Loading player directory…</option></select></label>
+      <button id="swap" class="swap" type="button" aria-label="Swap players" title="Swap players">⇄</button>
+      <label>Player two<select id="player-two" disabled><option>Loading player directory…</option></select></label>
+    </div>
+    <div id="compare-status" class="status" role="status" aria-live="polite">Loading player statistics from the nine team sheets…</div>
+    <div id="comparison" class="comparison" aria-live="polite"></div>
+    <div class="panel-actions"><button id="share" type="button" class="primary" disabled>Copy comparison link</button><button id="reload" type="button" class="quiet">Refresh data</button></div>
+  </section>
+  <section class="how"><div class="eyebrow">BUILT FOR WARRIORS</div><h2>More than a box score</h2><div class="feature-grid">
+    <article><b>01</b><h3>Cross-team search</h3><p>Find athletes across basketball and soccer without opening each roster separately.</p></article>
+    <article><b>02</b><h3>Fair comparisons</h3><p>Players are compared only within the same sport, using statistics available in both sheets.</p></article>
+    <article><b>03</b><h3>Shareable results</h3><p>Copy a direct link to a matchup and send it to teammates, parents, and fans.</p></article>
+  </div></section>
+  <footer>Statistics are provided by the published D’Iberville Athletics team sheets. Values update when the source sheets are refreshed.</footer>
+</main>
+</body></html>

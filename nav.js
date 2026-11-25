@@ -25,7 +25,7 @@
 
   function tabNow(){
     var h = location.hash.slice(1) || "overview";
-    if (/^p\d+$/.test(h)) return "profile";
+    if (!TABS.some(function(t){ return t[0] === h; }) && /^p[A-Za-z0-9_-]+$/.test(h)) return "profile";
     if (/^g\d+$/.test(h)) return "box";
     return TABS.some(function(t){ return t[0] === h; }) ? h : "overview";
   }
@@ -50,11 +50,12 @@
       TABS.map(function(t){ return '<a class="nv-item" role="menuitem" data-tab="' + t[0] + '" href="#' + t[0] + '">' + ic(t[2]) + t[1] + '</a>'; }).join("") + '</div></div>';
   }
 
+  var statsLink = '<a class="nv-link" href="stats-center.html" aria-label="Statistics Center">' + ic("leaders") + '<span>Stats Center</span></a>'; 
   var bar = document.createElement("div");
   bar.className = "nv";
   bar.setAttribute("role", "navigation");
   bar.setAttribute("aria-label", "Site menu");
-  bar.innerHTML = '<div class="nv-in"><a class="nv-link" href="index.html" aria-label="Home">' + ic("home") + '<span>Home</span></a>' + teamsDD + secDD + '</div>';
+  bar.innerHTML = '<div class="nv-in"><a class="nv-link" href="index.html" aria-label="Home">' + ic("home") + '<span>Home</span></a>' + teamsDD + secDD + statsLink + '</div>';
   document.body.insertBefore(bar, document.body.firstChild);
 
   function syncSections(){

@@ -1,0 +1,9 @@
+#global-player-search{margin:30px 0 8px;padding:18px;background:linear-gradient(160deg,#20242c,#181b21);border:1px solid rgba(249,167,31,.3);border-radius:14px;box-shadow:0 0 22px rgba(249,167,31,.08)}
+#global-player-search h2{font:800 27px/1 'Barlow Condensed',sans-serif;text-transform:uppercase;margin:0 0 6px;color:#f1f2f4}
+#global-player-search p{margin:0 0 12px;color:#9aa1ad;font-size:14px}
+#global-player-search input{width:100%;min-height:46px;padding:11px 14px;border:1px solid #454b56;border-radius:9px;background:#101216;color:#f1f2f4;font:600 16px Barlow,system-ui,sans-serif}
+#global-player-search input:focus{outline:2px solid #f9a71f;outline-offset:2px}
+#global-player-search [data-status]{display:block;margin-top:9px;color:#9aa1ad;font-size:13px}
+#global-player-search [data-results]{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px;margin-top:10px}
+#global-player-search .gps-result{display:block;padding:11px 12px;border:1px solid #343943;border-radius:8px;background:#222630;color:#f1f2f4;text-decoration:none;font-weight:600}
+#global-player-search .gps-result:hover,#global-player-search .gps-result:focus-visible{border-color:#f9a71f;outline:2px solid #f9a71f;outline-offset:1px}

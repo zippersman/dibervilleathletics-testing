@@ -122,7 +122,6 @@
     ["It takes a great talent and skill to conceal one's talent and skill.", LR],
     ["Man is an animal that makes bargains: no other animal does this. No dog exchanges bones with another.", "Adam Smith"],
     ["We should not be upset that others hide the truth from us when we hide it from ourselves.", LR],
-    ["Hell is other people.", "Jean-Paul Sartre"],
     ["There are two kinds of lies; one concerns an accomplished fact, the other concerns a future duty.", "Jean-Jacques Rousseau"],
     ["Nothing is as dangerous as an ignorant friend; a wise enemy is to be preferred.", "Jean de La Fontaine"],
     ["Abandon all hope, ye who enter here.", "Dante Alighieri"],
@@ -163,7 +162,7 @@
 
       /* Coach Nick */
     ["If everyone fought fire with fire, the whole world would burn.", "Coach Nick"],
-    ["Victim Mentality Bull Crap!", "Coach Nick"],
+    ["Victim Mentality Bullcrap!", "Coach Nick"],
 
     /* Anonymous */
     ["There's some easter egg quotes. Catch em' all!", "Anonymous"]

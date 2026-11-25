@@ -1,0 +1,7 @@
+#stat-glossary{max-width:1180px;margin:10px auto 18px;padding:12px 14px;background:#181b21;border:1px solid rgba(249,167,31,.28);border-radius:10px;color:#f1f2f4}
+#stat-glossary summary{cursor:pointer;color:#f9a71f;font-weight:700;min-height:28px;display:flex;align-items:center;gap:6px}
+#stat-glossary summary:focus-visible{outline:2px solid #f9a71f;outline-offset:3px;border-radius:3px}
+#stat-glossary dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px 18px;margin:12px 0 2px}
+#stat-glossary dl div{padding:8px 10px;background:#222630;border-radius:7px}
+#stat-glossary dt{font-weight:800;color:#f9a71f}
+#stat-glossary dd{margin:3px 0 0;color:#c4c9d1;font-size:13px;line-height:1.45}
