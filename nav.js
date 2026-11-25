@@ -50,12 +50,26 @@
       TABS.map(function(t){ return '<a class="nv-item" role="menuitem" data-tab="' + t[0] + '" href="#' + t[0] + '">' + ic(t[2]) + t[1] + '</a>'; }).join("") + '</div></div>';
   }
 
-  var statsLink = '<a class="nv-link" href="stats-center.html" aria-label="Statistics Center">' + ic("leaders") + '<span>Stats Center</span></a>' + '<a class="nv-link" href="advanced-analytics.html" aria-label="Advanced Analytics">' + ic("overview") + '<span>Analytics</span></a>' + '<a class="nv-link" href="game-center.html" aria-label="Game Center">' + ic("schedule") + '<span>Game Center</span></a>' + '<a class="nv-link" href="records-history.html" aria-label="Records and History">' + ic("leaders") + '<span>Records</span></a>' + '<a class="nv-link" href="player-awards.html" aria-label="Player Awards">' + ic("leaders") + '<span>Awards</span></a>' + '<a class="nv-link" href="milestones.html" aria-label="Season Milestones">' + ic("leaders") + '<span>Milestones</span></a>' + '<a class="nv-link" href="athlete-careers.html" aria-label="Athlete Careers">' + ic("profile") + '<span>Careers</span></a>'; 
+  /* ---- More dropdown: group the site sections into one clearly labeled menu ---- */
+  var MORE = [
+    ["Stats Center","stats-center.html","leaders"],
+    ["Advanced Analytics","advanced-analytics.html","overview"],
+    ["Game Center","game-center.html","schedule"],
+    ["Records & History","records-history.html","leaders"],
+    ["Player Awards","player-awards.html","leaders"],
+    ["Season Milestones","milestones.html","leaders"],
+    ["Athlete Careers","athlete-careers.html","profile"]
+  ];
+  var moreItems = MORE.map(function(x){
+    var on = file === x[1];
+    return '<a class="nv-item' + (on ? ' on' : '') + '" role="menuitem" href="' + x[1] + '"' + (on ? ' aria-current="page"' : '') + '>' + ic(x[2]) + x[0] + '</a>';
+  }).join("");
+  var moreDD = '<div class="nv-dd" id="nv-more"><button type="button" class="nv-btn" aria-haspopup="true" aria-expanded="false">' + ic("overview") + '<span>More</span></button><div class="nv-menu" role="menu" aria-label="More site sections">' + moreItems + '</div></div>';
   var bar = document.createElement("div");
   bar.className = "nv";
   bar.setAttribute("role", "navigation");
   bar.setAttribute("aria-label", "Site menu");
-  bar.innerHTML = '<div class="nv-in"><a class="nv-link" href="index.html" aria-label="Home">' + ic("home") + '<span>Home</span></a>' + teamsDD + secDD + statsLink + '</div>';
+  bar.innerHTML = '<div class="nv-in"><a class="nv-link" href="index.html" aria-label="Home">' + ic("home") + '<span>Home</span></a>' + teamsDD + secDD + moreDD + '</div>';
   document.body.insertBefore(bar, document.body.firstChild);
 
   function syncSections(){
