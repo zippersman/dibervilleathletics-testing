@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Records &amp; History | D’Iberville Athletics</title>
+<meta name="theme-color" content="#0e0f12"><link rel="icon" type="image/png" href="icon-192-v2.png">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav.css"><link rel="stylesheet" href="records-history.css">
+<script src="nav.js" defer></script><script src="records-history.js" defer></script>
+</head>
+<body>
+<header class="rh-hero"><div class="rh-shell"><div class="rh-eyebrow">WARRIORS · THE RECORD BOOK</div><h1>Records &amp; History</h1><p>Season leaders, standout performances, and the story behind every team.</p><div class="rh-tags"><span>9 TEAMS</span><span>2 SPORTS</span><span>LIVE PUBLISHED DATA</span></div></div></header>
+<main class="rh-shell rh-main">
+<section class="rh-toolbar"><div><div class="rh-eyebrow">SEASON RECORD BOOK</div><h2>Warriors statistical leaders</h2><p>Rankings are calculated from the player game-log rows currently published by each team.</p></div><div class="rh-controls"><label>Sport<select id="rh-sport"><option value="All">All sports</option><option>Basketball</option><option>Soccer</option></select></label><button id="rh-refresh" class="rh-btn">Refresh data</button></div></section>
+<div id="rh-status" class="rh-status" role="status" aria-live="polite">Connecting to the published team sheets…</div>
+<section class="rh-feature-grid"><article class="rh-panel rh-feature"><div class="rh-eyebrow">LATEST GAME SPOTLIGHT</div><h2>Recent standout</h2><div id="rh-spotlight" class="rh-empty">Loading recent game performances…</div></article><article class="rh-panel rh-feature"><div class="rh-eyebrow">TEAM SNAPSHOT</div><h2>Season summaries</h2><div id="rh-team-summaries" class="rh-team-list"><p class="rh-empty">Loading team records…</p></div></article></section>
+<section class="rh-panel rh-leaders"><div class="rh-section-head"><div><div class="rh-eyebrow">LEADERBOARD</div><h2 id="rh-leader-title">Basketball leaders</h2></div><div class="rh-tabs" role="group" aria-label="Statistic category"><button data-stat="primary" class="on">Scoring</button><button data-stat="secondary">Assists</button><button data-stat="defense">Defense</button></div></div><div id="rh-leaderboard"><p class="rh-empty">Loading published statistics…</p></div></section>
+<section class="rh-panel rh-history"><div class="rh-eyebrow">LOOKING BACK</div><h2>Season &amp; career archives</h2><p>The current published sheets provide this season’s records and game logs. Verified multi-year career totals and school all-time records require archived season sheets and a stable athlete ID that connects the same player across years.</p><div class="rh-archive-grid"><div><b>Available now</b><span>Current season team records, game results, and player totals.</span></div><div><b>Ready for archive data</b><span>Career timelines, multi-season leaderboards, and all-time school records once historical sheets are connected.</span></div></div><a class="rh-link" href="athlete-profiles.html">Explore athlete profiles →</a></section>
+<footer class="rh-footer">Statistics reflect the latest successfully loaded published team sheets. Rankings are season-to-date, not all-time school records. Missing or unpublished game-log rows are not estimated.</footer>
+</main>
+</body></html>

@@ -8,8 +8,9 @@ Current features
 - Cross-team player search
 - Statistics glossary on team pages
 - Statistics Center with cross-team player comparisons
+- Game Center with cross-team scoreboards, W-L records, recent form, scoring trends, player leaderboards, and shareable game breakdowns
 - Shareable comparison URLs
-- Service-worker caching for the app shell and Statistics Center
+- Service-worker caching for the app shell, Statistics Center, and Game Center
 
 Data source
 Team statistics are read from the published Google Sheets configured in the page scripts. Update those source sheets to update the site data.

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Athlete Directory | D’Iberville Athletics</title>
+<meta name="theme-color" content="#0e0f12"><link rel="icon" type="image/png" href="icon-192-v2.png">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav.css"><link rel="stylesheet" href="athlete-profiles.css">
+<script src="nav.js" defer></script><script src="athlete-profiles.js" defer></script>
+</head>
+<body>
+<header class="ap-hero"><div class="ap-shell"><div class="ap-eyebrow">WARRIORS · ATHLETE DATABASE</div><h1>Athlete Directory</h1><p>Find a Warrior. Explore season statistics. Share an athlete profile.</p><div class="ap-tags"><span>9 TEAMS</span><span>2 SPORTS</span><span>LIVE PUBLISHED DATA</span></div></div></header>
+<main class="ap-shell">
+<section class="ap-toolbar"><div><div class="ap-eyebrow">PLAYER SEARCH</div><h2>Warrior profiles</h2><p>Search athletes across all published team rosters.</p></div><button id="ap-refresh" class="ap-button" type="button">Refresh data</button></section>
+<div class="ap-filters"><label class="ap-search">Search player<input id="ap-query" type="search" placeholder="Enter athlete name or jersey number" autocomplete="off"></label><label>Sport<select id="ap-sport"><option value="All">All sports</option><option>Basketball</option><option>Soccer</option></select></label><label>Team<select id="ap-team"><option value="All">All teams</option></select></label></div>
+<div id="ap-status" class="ap-status" role="status" aria-live="polite">Loading published rosters…</div>
+<section id="ap-directory" class="ap-directory" aria-live="polite"></section>
+<section id="ap-profile" class="ap-profile" hidden aria-live="polite"></section>
+<footer class="ap-foot">Player statistics are displayed as published by the D’Iberville Athletics team sheets. Missing values are not estimated. Rosters and statistics may change when source sheets are updated.</footer>
+</main>
+</body></html>

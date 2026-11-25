@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Game Center | D’Iberville Athletics</title><meta name="theme-color" content="#0e0f12"><link rel="icon" type="image/png" href="icon-192-v2.png">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav.css"><link rel="stylesheet" href="game-center.css">
+<script src="nav.js" defer></script><script src="game-center.js" defer></script>
+</head>
+<body>
+<header class="gc-hero"><div class="gc-shell"><div class="gc-eye">WARRIORS · LIVE DATA &amp; ANALYTICS</div><h1>Game Center</h1><p>Scores, team form, game breakdowns, and statistical leaders across D’Iberville Athletics.</p><div class="gc-tags"><span>9 TEAMS</span><span>2 SPORTS</span><span>UPDATED FROM TEAM SHEETS</span></div></div></header>
+<main class="gc-shell">
+  <div class="gc-heading"><div><div class="gc-eye">THE SCOREBOARD</div><h2>Latest games &amp; upcoming matchups</h2></div><button id="gc-refresh" class="gc-btn secondary">↻ Refresh data</button></div>
+  <div id="gc-status" class="gc-status" role="status" aria-live="polite">Connecting to team scorebooks…</div>
+  <section id="gc-scoreboard" class="gc-scoreboard" aria-label="Latest scores"></section>
+  <section class="gc-section"><div class="gc-heading"><div><div class="gc-eye">TEAM PERFORMANCE</div><h2>Records &amp; recent form</h2></div><label class="gc-filter">Sport <select id="gc-sport"><option value="All">All sports</option><option>Basketball</option><option>Soccer</option></select></label></div><div id="gc-records" class="gc-records"></div></section>
+  <section class="gc-section"><div class="gc-heading"><div><div class="gc-eye">TREND TRACKER</div><h2>Scoring by game</h2></div><label class="gc-filter">Team <select id="gc-team"></select></label></div><div id="gc-chart" class="gc-chart"></div><p class="gc-note">Charts use completed games with recorded scores. They show D’Iberville points/goals scored and allowed in date order.</p></section>
+  <section class="gc-section"><div class="gc-heading"><div><div class="gc-eye">LEADERBOARD</div><h2>Statistical leaders</h2></div><label class="gc-filter">Sport <select id="gc-leader-sport"><option>Basketball</option><option>Soccer</option></select></label></div><div class="gc-leader-tabs" role="group" aria-label="Leaderboard statistic"><button class="on" data-stat="primary">Scoring</button><button data-stat="secondary">Assists</button><button data-stat="defense">Defense</button></div><div id="gc-leaders" class="gc-table-wrap"></div></section>
+  <section class="gc-section" id="gc-game-detail"><div class="gc-eye">GAME CENTER</div><h2>Game breakdown</h2><div id="gc-detail" class="gc-detail"><p class="gc-empty">Choose a completed game above to view its player box score.</p></div></section>
+  <section class="gc-section"><div class="gc-eye">THE WARRIORS RECORD BOOK</div><h2>Season &amp; team archives</h2><p class="gc-note">Open a team's existing Stat Record section to explore the historical records supported by that team's source sheet.</p><div class="gc-archive-grid"><a href="girls-varsity.html#records">Girls Varsity Basketball ↗</a><a href="girls-jv.html#records">Girls JV Basketball ↗</a><a href="boys-varsity.html#records">Boys Varsity Basketball ↗</a><a href="boys-jv.html#records">Boys JV Basketball ↗</a><a href="boys-freshman.html#records">Boys Freshman Basketball ↗</a><a href="soccer-girls-varsity.html#records">Girls Varsity Soccer ↗</a><a href="soccer-girls-jv.html#records">Girls JV Soccer ↗</a><a href="soccer-boys-varsity.html#records">Boys Varsity Soccer ↗</a><a href="soccer-boys-jv.html#records">Boys JV Soccer ↗</a></div></section>
+  <footer class="gc-footer">Statistics are read from the published D’Iberville Athletics Google Sheets. Missing values are shown as dashes; no statistics are estimated. A game appears in the box score when its source sheet includes player game-log rows.</footer>
+</main>
+</body></html>
