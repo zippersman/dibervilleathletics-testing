@@ -58,6 +58,7 @@
     ["Records & History","records-history.html","leaders"],
     ["Player Awards","player-awards.html","leaders"],
     ["Season Milestones","milestones.html","leaders"],
+    ["Athlete Directory","athlete-profiles.html","players"],
     ["Athlete Careers","athlete-careers.html","profile"]
   ];
   var moreItems = MORE.map(function(x){

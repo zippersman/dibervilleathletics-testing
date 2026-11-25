@@ -19,4 +19,7 @@ Deployment
 Upload the contents of this folder to the repository root and publish with GitHub Pages. Keep the HTML, JavaScript, CSS, images, and icons in their existing relative paths.
 
 
-Update: The standalone Athlete Directory page has been removed to avoid duplicating the existing team-page Profile tabs and Athlete Careers section. Athlete-related navigation now uses those existing areas.
+Athlete Directory
+- `athlete-profiles.html` is the searchable all-team directory, with live roster data, sport/team filters, and shareable season-stat profile views.
+- It is linked from the shared More navigation, the homepage, and Advanced Analytics.
+- `athlete-careers.html` remains a separate multi-season career archive based on permanent Athlete IDs.
