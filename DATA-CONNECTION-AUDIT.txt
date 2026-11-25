@@ -1,0 +1,33 @@
+D'IBERVILLE ATHLETICS — DATA CONNECTION AUDIT
+=============================================
+
+The nine supplied Excel workbooks were inspected. All contain tabs named:
+Calendar, Schedule, Game Recap, Team Totals, Stat Leaders, Player Stats,
+Season Total Leaders, Player Profile, Schedule Log, Game Log, Roster,
+Teams, Instructions, and Looker Data.
+
+Confirmed schema mismatch:
+- Roster header row is row 8 and uses "Jersey #" and "Player Name".
+- Game Log header row is row 4 and uses "Jersey #" and "Player".
+- Looker Data uses "Jersey" and "Player" in row 1.
+- The website's prior parsers expected "Jersey" and "Player" in roster/game-log
+  data, so roster lookup and player-stat matching could fail.
+
+Changes in this package:
+- Advanced Analytics parser now normalizes "Jersey #" -> "Jersey" and
+  "Player Name" -> "Player".
+- Athlete Directory parser now accepts the workbook's actual roster headers.
+- Soccer comparison metrics now use fields present in the supplied game-log
+  template (SH, SOT, G, A, SAV, GA, CS).
+- Comparison tables safely display a dash for a metric missing from one player.
+
+Data limitations observed:
+- Several soccer workbooks have little or no populated Game Log / Looker Data.
+  The site cannot display statistics that are not entered in those sheets.
+- The Excel exports do not preserve the Google Sheets published-tab GIDs.
+  The website's configured published URLs and tab IDs therefore still need
+  live verification in the deployed site. This audit does not claim that every
+  live Google fetch has been tested.
+
+Before publishing, test each team's roster, schedule, and game log against
+its currently published Google Sheet.
