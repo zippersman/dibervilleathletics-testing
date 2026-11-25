@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Athlete Careers | D’Iberville Athletics</title><meta name="theme-color" content="#0e0f12">
+<link rel="icon" type="image/png" href="icon-192-v2.png">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav.css"><link rel="stylesheet" href="athlete-careers.css">
+<script src="nav.js" defer></script><script src="athlete-careers.js" defer></script>
+<link rel="stylesheet" href="mobile.css">
+</head><body>
+<header class="ac-hero"><div class="ac-shell"><div class="ac-kicker">WARRIORS · THE CAREER ARCHIVE</div><h1>Athlete Careers</h1><p>Follow an athlete's statistics across teams and seasons using verified, school-assigned athlete IDs.</p><div class="ac-tags"><span>9 TEAMS</span><span>CAREER TRACKING</span><span>HISTORICAL ARCHIVE</span></div></div></header>
+<main class="ac-shell ac-main">
+<section class="ac-intro"><div><div class="ac-kicker">ONE ATHLETE · MANY SEASONS</div><h2>Build a lasting Warriors record.</h2><p>Search athletes with a permanent Athlete ID. Career totals combine only records carrying the same ID; names and jersey numbers are never used to guess identity.</p></div><button id="ac-refresh" class="ac-btn">Refresh data</button></section>
+<div id="ac-status" class="ac-status" role="status" aria-live="polite">Loading current team sheets and career archive…</div>
+<section class="ac-controls"><label>Sport<select id="ac-sport"><option value="All">All sports</option><option>Basketball</option><option>Soccer</option></select></label><label>Search athlete<input id="ac-query" type="search" placeholder="Name or Athlete ID"></label></section>
+<section id="ac-summary" class="ac-summary"></section>
+<section id="ac-list" class="ac-grid"><article class="ac-card">Connecting to published team sheets…</article></section>
+<section class="ac-guide"><div class="ac-kicker">HOW TO ACTIVATE CAREER TRACKING</div><h2>Permanent IDs must come from the school.</h2><ol><li>Add a column named <b>Athlete ID</b> to each team's published roster sheet.</li><li>Assign each athlete a unique, permanent ID (for example, <code>DHS-000123</code>). Keep that ID when the athlete changes jersey number or moves between JV and varsity.</li><li>Use the same ID in every season's archived records. Do not reuse IDs or assign them based only on matching names.</li><li>For past seasons, add verified rows to <code>career-archive.csv</code> using the template included in this project.</li></ol><p>The page currently reads the existing nine roster sheets and an optional archive CSV. If a sheet does not contain Athlete ID, its players remain visible in the source-coverage count but are not merged into a career profile.</p><a class="ac-link" href="career-archive-template.csv" download>Download career archive CSV template →</a></section>
+<footer class="ac-footer">Career totals are shown only for athletes with matching permanent IDs. Historical data must be supplied and verified by the school. Unavailable seasons and statistics are not estimated.</footer>
+</main></body></html>

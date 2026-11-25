@@ -1,0 +1,61 @@
+/* Phase 9 — mobile-first refinements shared by every page */
+:root{--mobile-gutter:clamp(14px,4vw,22px);--mobile-tap:44px}
+html{width:100%;max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:76px}
+body{width:100%;max-width:100%;overflow-x:hidden;padding-bottom:max(28px,env(safe-area-inset-bottom))}
+img,svg,video,canvas{max-width:100%;height:auto}
+button,input,select,textarea{font:inherit;max-width:100%}
+button,a,select,input[type=checkbox],input[type=radio]{touch-action:manipulation}
+a,button,[role=button],select{ -webkit-tap-highlight-color:rgba(249,167,31,.16)}
+:focus-visible{outline:2px solid #f9a71f;outline-offset:3px}
+/* Prevent wide data tables and charts from breaking the viewport. */
+table{max-width:100%;border-collapse:collapse}
+.table-wrap,.table-scroll,.scroll-x{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+canvas{max-width:100%}
+/* Common layouts gracefully collapse instead of squeezing text. */
+@media(max-width:760px){
+  .wrap,.shell,.gc-shell,.aa-shell,.ac-shell,.ap-shell,.ms-shell,.pa-shell,.rh-shell{width:100%;max-width:100%;padding-left:var(--mobile-gutter);padding-right:var(--mobile-gutter)}
+  .cards,.res,.feature-grid,.guides,.aa-info-grid,.gc-archive-grid,.rh-archive-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+  .cols,.bigseg.two,.aa-selectors,.ap-filters,.rh-controls{grid-template-columns:1fr;}
+  .panel,.card,.r,.guide{min-width:0}
+  h1{font-size:clamp(34px,9vw,54px);overflow-wrap:anywhere}
+  h2{font-size:clamp(25px,6vw,32px)}
+  input,select,textarea{min-height:var(--mobile-tap);font-size:16px!important}
+  button{min-height:var(--mobile-tap)}
+  footer{padding-left:var(--mobile-gutter);padding-right:var(--mobile-gutter)}
+}
+@media(max-width:520px){
+  :root{--mobile-gutter:14px}
+  .nv{padding-top:env(safe-area-inset-top)}
+  .nv-in{display:flex;gap:3px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;white-space:nowrap;padding:6px 10px;max-width:100%}
+  .nv-in::-webkit-scrollbar{display:none}
+  .nv-link,.nv-btn{flex:0 0 auto;min-height:42px;padding:10px 9px;font-size:14px}
+  .nv-menu{position:fixed;top:58px;left:10px;right:10px;max-height:calc(100dvh - 78px);min-width:0;z-index:120}
+  .cards,.res,.feature-grid,.guides,.aa-info-grid,.gc-archive-grid,.rh-archive-grid{grid-template-columns:minmax(0,1fr)}
+  .top{gap:9px;padding:12px 0;align-items:center}
+  .top img{width:40px;height:40px}
+  .top b{font-size:20px}
+  .top span{font-size:12px}
+  .card{padding:14px;min-height:0}
+  .card h3{font-size:25px}
+  .r{padding:12px}
+  .vs{gap:5px}
+  .t img,.ini{width:38px;height:38px}
+  .t div.s{font-size:clamp(29px,9vw,38px)}
+  .panel,.guide{padding:14px}
+  .aa-chart-head,.gc-heading,.rh-section-head,.pa-section-head{align-items:flex-start;flex-wrap:wrap;gap:8px}
+  .aa-actions,.panel-actions{display:flex;flex-wrap:wrap;gap:8px}
+  .aa-actions>* ,.panel-actions>*{flex:1 1 auto}
+  /* Dense tables remain readable with intentional horizontal scrolling. */
+  table{display:block;width:100%;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+  th,td{padding:9px 10px!important}
+  .hero-tags,.aa-tags,.gc-tags,.ac-tags,.ap-tags,.ms-tags,.pa-tags,.rh-tags{flex-wrap:wrap;gap:6px}
+  .feature-grid>*{min-width:0}
+}
+@media(max-width:360px){
+  .nv-link,.nv-btn{font-size:13px;padding:9px 7px}
+  .wrap,.shell,.gc-shell,.aa-shell,.ac-shell,.ap-shell,.ms-shell,.pa-shell,.rh-shell{padding-left:12px;padding-right:12px}
+  .card h3{font-size:23px}
+  .vs{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
+}
+@media(hover:none){a.card:hover,a.r:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}

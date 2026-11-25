@@ -17,3 +17,6 @@ Team statistics are read from the published Google Sheets configured in the page
 
 Deployment
 Upload the contents of this folder to the repository root and publish with GitHub Pages. Keep the HTML, JavaScript, CSS, images, and icons in their existing relative paths.
+
+
+Update: The standalone Athlete Directory page has been removed to avoid duplicating the existing team-page Profile tabs and Athlete Careers section. Athlete-related navigation now uses those existing areas.

@@ -3,10 +3,10 @@
      phone is offline, fall back to the last copy it saw, so the app still opens.
    - Stats come from Google Sheets (another origin). Those requests are never touched or cached here,
      so scores are always live and never stale. If offline, the page's own "Try again" message shows. */
-const CACHE = "dhs-v7";
+const CACHE = "dhs-v10";
 const SHELL = ["./", "index.html", "basketball.html", "soccer.html", "nav.js", "nav.css",
                "loader.js", "loader.css", "logos.js", "global-player-search.js", "player-search.css",
-               "stats-glossary.js", "stats-glossary.css", "stats-center.html", "stats-center.js", "stats-center.css", "athlete-profiles.html", "athlete-profiles.js", "athlete-profiles.css", "game-center.html", "game-center.js", "game-center.css", "records-history.html", "records-history.js", "records-history.css", "advanced-analytics.html", "advanced-analytics.js", "advanced-analytics.css", "icon-192-v2.png"];
+               "stats-glossary.js", "stats-glossary.css", "stats-center.html", "stats-center.js", "stats-center.css", "game-center.html", "game-center.js", "game-center.css", "records-history.html", "records-history.js", "records-history.css", "advanced-analytics.html", "advanced-analytics.js", "advanced-analytics.css", "player-awards.html", "player-awards.js", "player-awards.css", "milestones.html", "milestones.js", "milestones.css", "athlete-careers.html", "athlete-careers.js", "athlete-careers.css", "career-archive-template.csv", "icon-192-v2.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(

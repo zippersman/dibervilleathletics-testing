@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Season Milestones | D’Iberville Athletics</title><meta name="theme-color" content="#0e0f12">
+<link rel="icon" type="image/png" href="icon-192-v2.png">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nav.css"><link rel="stylesheet" href="milestones.css">
+<script src="nav.js" defer></script><script src="milestones.js" defer></script>
+<link rel="stylesheet" href="mobile.css">
+</head><body>
+<header class="ms-hero"><div class="ms-shell"><div class="ms-kicker">WARRIORS · SEASON ACHIEVEMENTS</div><h1>Milestones</h1><p>Celebrate statistical achievements recorded in the currently published team sheets.</p><div class="ms-tags"><span>9 TEAMS</span><span>2 SPORTS</span><span>LIVE PUBLISHED DATA</span></div></div></header>
+<main class="ms-shell ms-main">
+<section class="ms-intro"><div><div class="ms-kicker">THE SEASON RECORD BOOK</div><h2>Every number tells a story.</h2><p>Browse season-total milestones reached by athletes in the published rosters. Select an achievement to view its supporting statistics or print a shareable recognition card.</p></div><button id="ms-refresh" class="ms-btn">Refresh data</button></section>
+<div id="ms-status" class="ms-status" role="status" aria-live="polite">Loading published rosters…</div>
+<section class="ms-controls" aria-label="Milestone filters"><label>Sport<select id="ms-sport"><option>All</option><option>Basketball</option><option>Soccer</option></select></label><label>Team<select id="ms-team"><option value="All">All teams</option></select></label><label>Achievement<select id="ms-type"><option value="All">All milestones</option></select></label><label>Search athlete<input id="ms-query" type="search" placeholder="Player name or jersey"></label></section>
+<section id="ms-summary" class="ms-summary" aria-live="polite"></section>
+<section id="ms-list" class="ms-grid"><article class="ms-card ms-loading">Connecting to published team sheets…</article></section>
+<section class="ms-note"><div class="ms-kicker">HOW TO READ THIS PAGE</div><h2>Season milestones, not career records</h2><p>Milestones are calculated from the current values in each team's published roster sheet. Thresholds are site-defined recognition levels, not official school records or awards. A player may appear more than once if they reach multiple milestones. These totals do not combine seasons, and player identity is not assumed across teams or years.</p><p>Only statistics actually present in a source sheet are evaluated. Missing values are not treated as zero and are never estimated.</p></section>
+<footer class="ms-footer">Data source: the currently published D’Iberville Athletics team statistics sheets. Last checked time and source availability are shown above.</footer>
+</main></body></html>
